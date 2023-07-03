@@ -47,7 +47,7 @@ const addProductToUserCart = async (req,res)=>{
     currUser = await currUser.save();
     res.json(currUser);
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     res.status(500).json({errMsg:`An error has occured with message : ${error}`});
   }
 };

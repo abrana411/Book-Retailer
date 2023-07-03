@@ -1,9 +1,8 @@
 import 'package:a_to_z_shop/features/account/widgets/single_product.dart';
 import 'package:a_to_z_shop/features/admin/screens/add_prod_screen.dart';
 import 'package:a_to_z_shop/features/admin/services/admin_services.dart';
-import 'package:a_to_z_shop/helperConstants/screen_loader.dart';
+import 'package:a_to_z_shop/constant/screen_loader.dart';
 import 'package:a_to_z_shop/models/product_model.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class ProdsScreen extends StatefulWidget {

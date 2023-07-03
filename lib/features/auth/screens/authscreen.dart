@@ -1,7 +1,7 @@
-import 'package:a_to_z_shop/commonThings/widgets/customTextFormfield.dart';
-import 'package:a_to_z_shop/commonThings/widgets/custom_button.dart';
+import 'package:a_to_z_shop/common/widgets/customTextFormfield.dart';
+import 'package:a_to_z_shop/common/widgets/custom_button.dart';
 import 'package:a_to_z_shop/features/auth/services/auth_services.dart';
-import 'package:a_to_z_shop/helperConstants/global_variables.dart';
+import 'package:a_to_z_shop/constant/global_variables.dart';
 import 'package:flutter/material.dart';
 
 enum AuthFunction {
@@ -28,9 +28,9 @@ class _AuthScreenState extends State<AuthScreen> {
       GlobalKey<FormState>(); //creating a key for existing account (login)
   final AuthService authService = AuthService();
 
-  TextEditingController _nameController = TextEditingController();
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   @override
   void dispose() {
@@ -41,12 +41,13 @@ class _AuthScreenState extends State<AuthScreen> {
   }
 
   //Method to invoke the sinup method in the authservice
-  void signuptheUser() {
+  void signuptheUser(bool isGoogleSignIn) {
     authService.signUpUser(
       context: context,
       name: _nameController.text,
       email: _emailController.text,
       password: _passwordController.text,
+      isGoogle: isGoogleSignIn,
     );
   }
 
@@ -138,7 +139,7 @@ class _AuthScreenState extends State<AuthScreen> {
                           onTap: () {
                             if (_newAccountKey.currentState!.validate()) {
                               //if validation is successful then sugn up the user else the error will be shown (which we had retunred from the validate() in the text form field)
-                              signuptheUser();
+                              signuptheUser(false);
                             }
                           }),
                     ],
@@ -195,6 +196,26 @@ class _AuthScreenState extends State<AuthScreen> {
                     ],
                   )),
             ),
+          const SizedBox(
+            height: 20,
+          ),
+          ElevatedButton.icon(
+            onPressed: () => signuptheUser(true),
+            icon: Image.asset(
+              'assets/images/googleLogo.png',
+              height: 20,
+            ),
+            label: const Text(
+              'Sign in with Google',
+              style: TextStyle(
+                color: Colors.black,
+              ),
+            ),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.white,
+              minimumSize: const Size(150, 50),
+            ),
+          ),
         ],
       )),
     );

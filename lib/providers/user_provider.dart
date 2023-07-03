@@ -3,15 +3,16 @@ import 'package:flutter/material.dart';
 
 class UserProvider extends ChangeNotifier {
   User _user = User(
-      //Current user all things will be strored in this instance of User model
-      id: '',
-      name: '',
-      password: '',
-      address: '',
-      type: '',
-      token: '',
-      email: '',
-      cart: []);
+    //Current user all things will be stored in this instance of User model
+    id: '',
+    name: '',
+    password: '',
+    address: '',
+    type: '',
+    token: '',
+    email: '',
+    cart: [],
+  );
 
   User get user => _user; //Getter to get the user
 

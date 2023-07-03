@@ -1,14 +1,15 @@
 import 'dart:convert';
 
 import 'package:a_to_z_shop/features/auth/screens/authscreen.dart';
-import 'package:a_to_z_shop/helperConstants/error_handling.dart';
-import 'package:a_to_z_shop/helperConstants/global_variables.dart';
+import 'package:a_to_z_shop/constant/error_handling.dart';
+import 'package:a_to_z_shop/constant/global_variables.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../../helperConstants/show_snack_bar.dart';
+import '../../../constant/show_snack_bar.dart';
 import '../../../models/order_model.dart';
 import '../../../providers/user_provider.dart';
 
@@ -53,8 +54,13 @@ class AccountServices {
   }
 
   //Function to log out the user:
-  void logOutUser(BuildContext context) async {
+  void logOutUser(BuildContext context, bool isGoogleSignOut) async {
     try {
+      if (isGoogleSignOut) {
+        print("arre bhai sab");
+        await GoogleSignIn().signOut();
+      }
+
       SharedPreferences sharedPreferences =
           await SharedPreferences.getInstance();
       sharedPreferences.setString("User_token", "");

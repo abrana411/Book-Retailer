@@ -1,14 +1,14 @@
 //A class having all the services (business logic , signup , login, etc) of the Auththentication part
 import 'dart:convert';
 
-import 'package:a_to_z_shop/commonThings/widgets/bottom_nav_bar.dart';
-import 'package:a_to_z_shop/features/home/screens/home_screen.dart';
-import 'package:a_to_z_shop/helperConstants/error_handling.dart';
-import 'package:a_to_z_shop/helperConstants/global_variables.dart';
-import 'package:a_to_z_shop/helperConstants/show_snack_bar.dart';
-import 'package:a_to_z_shop/models/user_model.dart';
+import 'package:a_to_z_shop/common/widgets/bottom_nav_bar.dart';
+import 'package:a_to_z_shop/constant/error_handling.dart';
+import 'package:a_to_z_shop/constant/global_variables.dart';
+import 'package:a_to_z_shop/constant/show_snack_bar.dart';
+// import 'package:a_to_z_shop/models/user_model.dart';
 import 'package:a_to_z_shop/providers/user_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart'
@@ -20,23 +20,38 @@ class AuthService {
       {required BuildContext context,
       required String name,
       required String email,
-      required String password}) async {
+      required String password,
+      required bool isGoogle}) async {
     try {
-      User newUser = User(
-        id: '',
-        name: name,
-        password: password,
-        email: email,
-        address: '',
-        type: '',
-        token: '',
-        cart: [],
-      );
+      if (isGoogle) {
+        final gooleInstance = GoogleSignIn();
+        final user = await gooleInstance.signIn();
+        if (user != null) {
+          name = user.displayName!;
+          email = user.email;
+          password = '';
+        }
+      }
+      // User newUser = User(
+      //   id: '',
+      //   name: name,
+      //   password: password,
+      //   email: email,
+      //   address: '',
+      //   type: '',
+      //   token: '',
+      //   cart: [],
+      // );
 
       //will use the http package now to make the post request
       http.Response response = await http.post(
         Uri.parse("${GlobalVariables.initialUrl}/api/signup"),
-        body: newUser.toJson(),
+        body: jsonEncode({
+          "name": name,
+          "email": email,
+          "password": password,
+          "isGoogleSignIn": isGoogle,
+        }),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
@@ -47,12 +62,22 @@ class AuthService {
         httphandleError(
             response: response,
             context: context,
-            onSuccess: () {
+            onSuccess: () async {
               ShowSnackBar(
                   context: context,
-                  text:
-                      "Registered successfully!! Please login with same credentials.",
+                  text: "Registered successfully!!",
                   color: Colors.green);
+
+              Provider.of<UserProvider>(context, listen: false)
+                  .setUser(response.body);
+
+              SharedPreferences prefs = await SharedPreferences.getInstance();
+              await prefs.setString(
+                  "User_token", json.decode(response.body)['token']);
+              if (context.mounted) {
+                Navigator.of(context).pushNamedAndRemoveUntil(
+                    BottomNavBar.routeName, (route) => false);
+              }
             });
       }
     } catch (error) {

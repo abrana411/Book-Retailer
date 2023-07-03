@@ -1,6 +1,6 @@
 import 'package:a_to_z_shop/features/account/widgets/button_column.dart';
 import 'package:a_to_z_shop/features/account/widgets/user_orders.dart';
-import 'package:a_to_z_shop/helperConstants/global_variables.dart';
+import 'package:a_to_z_shop/constant/global_variables.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/content_below_app_bar.dart';
@@ -36,8 +36,8 @@ class AccountScreen extends StatelessWidget {
               ),
               Container(
                 padding: const EdgeInsets.only(left: 15, right: 15),
-                child: Row(
-                  children: const [
+                child: const Row(
+                  children: [
                     Padding(
                       padding: EdgeInsets.only(right: 15),
                       child: Icon(Icons.notifications_outlined),
@@ -52,8 +52,8 @@ class AccountScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: Column(
-        children: const [
+      body: const Column(
+        children: [
           BelowAppBarInAccount(),
           SizedBox(
             height: 10,

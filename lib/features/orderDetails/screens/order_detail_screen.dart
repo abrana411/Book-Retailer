@@ -1,4 +1,4 @@
-import 'package:a_to_z_shop/commonThings/widgets/custom_button.dart';
+import 'package:a_to_z_shop/common/widgets/custom_button.dart';
 import 'package:a_to_z_shop/features/admin/services/admin_services.dart';
 import 'package:a_to_z_shop/models/order_model.dart';
 import 'package:a_to_z_shop/providers/user_provider.dart';
@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
-import '../../../helperConstants/global_variables.dart';
+import '../../../constant/global_variables.dart';
 import '../../search/screens/search_screen.dart';
 
 class OrderDetailsScreen extends StatefulWidget {

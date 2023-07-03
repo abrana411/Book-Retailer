@@ -18,8 +18,9 @@ class GlobalVariables {
 
   //Initial ip address that will be used in url of each api call:-
   // can read here https://inspirnathan.com/posts/34-access-localhost-inside-android-emulator/
-  static const initialUrl =
-      "http://10.0.2.2:3000"; //ie replacing the local host with 10.0.2.2
+  // static const initialUrl =
+  //     "http://10.0.2.2:3001"; //ie replacing the local host with 10.0.2.2
+  static const initialUrl = "http://192.168.0.101:3001";
 
   // STATIC IMAGES
   static const List<String> carouselImages = [

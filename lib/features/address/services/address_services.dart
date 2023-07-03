@@ -1,12 +1,12 @@
 import 'dart:convert';
 
-import 'package:a_to_z_shop/helperConstants/error_handling.dart';
+import 'package:a_to_z_shop/constant/error_handling.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
 
-import '../../../helperConstants/global_variables.dart';
-import '../../../helperConstants/show_snack_bar.dart';
+import '../../../constant/global_variables.dart';
+import '../../../constant/show_snack_bar.dart';
 import '../../../models/user_model.dart';
 import '../../../providers/user_provider.dart';
 

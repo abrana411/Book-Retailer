@@ -1,10 +1,10 @@
 import 'package:a_to_z_shop/features/home/services/home_services.dart';
 import 'package:a_to_z_shop/features/prodDetails/screens/product_detail_screen.dart';
-import 'package:a_to_z_shop/helperConstants/screen_loader.dart';
+import 'package:a_to_z_shop/constant/screen_loader.dart';
 import 'package:a_to_z_shop/models/product_model.dart';
 import 'package:flutter/material.dart';
 
-import '../../../helperConstants/global_variables.dart';
+import '../../../constant/global_variables.dart';
 
 class SingleCategoryScreen extends StatefulWidget {
   static const String routeName = "/cat-screen";

@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
 
-import '../../../helperConstants/error_handling.dart';
-import '../../../helperConstants/global_variables.dart';
-import '../../../helperConstants/show_snack_bar.dart';
+import '../../../constant/error_handling.dart';
+import '../../../constant/global_variables.dart';
+import '../../../constant/show_snack_bar.dart';
 import '../../../models/product_model.dart';
 import '../../../providers/user_provider.dart';
 
@@ -79,12 +79,18 @@ class HomeServices {
           response: res,
           context: context,
           onSuccess: () {
-            product = Product.fromJson(
-                res.body); //Updating the product in case we get from API
+            // print("This is body: " + res.body);
+
+            // print(res.body);
+            if (res.body.isNotEmpty) {
+              product = Product.fromJson(
+                  res.body); //Updating the product in case we get from API
+            }
           },
         );
       }
     } catch (e) {
+      // print(e);
       ShowSnackBar(context: context, text: e.toString(), color: Colors.red);
     }
     return product; //returning the product (This will never be null , can have all fields empty thiugh as we declared a initial one)

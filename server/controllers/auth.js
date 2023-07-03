@@ -6,13 +6,22 @@ const jwt = require('jsonwebtoken');
 const signUpUser = async (req,res)=>{
     try {
        //getting the name,email and the password of the user which we are about to create from the req.body as the frontend will pass it from there end
-       const {name,email,password} = req.body;
+       const {name,email,password,isGoogleSignIn} = req.body;
         //The errors can be handles using the logic of what i did using the error_handler middleware and the http_express_error package but here doing them manually
         //Though the duplicate email error can be handles by the mongoose itself but doing here to show the custom message as an error (though we can do that using the error_handler middleware as done in jobs api too)
         const existingUser = await userModel.findOne({ email });
-        if(existingUser)
+      //   console.log(existingUser);
+        
+        if(!isGoogleSignIn && existingUser)
         {
             return res.status(400).send({errMsg:"A user with same email already exists!!"});
+        }
+        else if(isGoogleSignIn && existingUser)
+        {
+            const token = jwt.sign({ id: existingUser._id}, process.env.JWT_SECRET, { 
+               expiresIn: process.env.JWT_EXPIRETIME,
+            });
+            return res.status(200).json({token,...existingUser._doc});
         }
 
         //Hasing the password using the bcrypt js:- (could do this in pre middleware when creation of user schema is about to be done) as done in jobs api projectr (can refer that for good code writing)
@@ -23,12 +32,17 @@ const signUpUser = async (req,res)=>{
         let user = new userModel({
             name,
             email,
-            password:hashedPassword,
+            password: hashedPassword,
         });
 
-        newUser = await user.save();
-        //Above work similar to userModel.create({})
-        res.json(newUser);
+        user = await user.save();
+        
+        if(isGoogleSignIn) user.password = "";
+        const token = jwt.sign({ id: user._id}, process.env.JWT_SECRET, { 
+         expiresIn: process.env.JWT_EXPIRETIME,
+        });
+ 
+       res.status(200).json({token,...user._doc});
    } catch (error) {
         res.status(500).send({errMsg:`An error has occured with message : ${error.message}`});
    }
@@ -45,14 +59,14 @@ const signInUser = async (req, res) => {
      const user = await userModel.findOne({email});
      if(!user)
      {
-        res.status(400).json({errMsg:"No user is regeistered with this email"});
+        return res.status(400).json({errMsg:"No user is registered with this email"});
      }
 
      //Now compare the password (and since the password was hashed so we will have to use the bcypt.js for that purpose too)
       const isMatching = await bcrypt.compare(password,user.password);
       if(!isMatching)
       {
-        res.status(400).json({errMsg:"Password is Incorrect!!"});
+        return res.status(400).json({errMsg:"Password is Incorrect!!"});
       }
 
       //Now creating the token (can do this in the instance method of the userModel(like did in the jobs.api porject too but doing it like this only here))
@@ -80,12 +94,12 @@ const validatetoken = async (req,res)=>{
 
       const isVerified = await jwt.verify(token,process.env.JWT_SECRET); //This method can be used to verify (it takes the same secret key we have used for the signin of the token ie generation of the token)
       //If the token exists but it is not valid
-      if(!isVerified) res.json(false);
+      if(!isVerified) return res.json(false);
 
       //IF the token is valid but there is no user associated with the id of the user whose token is this (may be because the user got deleted some how)
       //And to get the id we can use the isVerified field above , as it is nothing but the payload we have given at the time of generation of the token
       const user = await userModel.findById(isVerified.id);//in the jwt.sign({id:id of user}) this id is used here
-      if(!user) res.json(false);
+      if(!user) return res.json(false);
 
       //else if everything is fine then we will simply return true ie the token is valid and there is a user corresponding to the token
       res.json(true);

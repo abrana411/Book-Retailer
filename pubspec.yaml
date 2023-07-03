@@ -40,8 +40,9 @@ dependencies:
   cloudinary_public: ^0.21.0 #the images for the product (when the admin in adding for selling) will be published here in cloudinary (which is a cloud space, easier this way then using the mongo for that too) and this package allows us to do that task easily without using the api key and the api http request to the clloudinary (but have to login though)
   flutter_rating_bar: ^4.0.1 # to show the rating stars
   pay: ^1.1.1 #For adding the payment options
-  intl: ^0.17.0 #for formating the date
+  intl: ^0.18.0 #for formating the date
   fl_chart: ^0.62.0 #For showing the analytics (the bar chart in my case)
+  google_sign_in: ^6.1.4
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

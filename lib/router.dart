@@ -1,4 +1,4 @@
-import 'package:a_to_z_shop/commonThings/widgets/bottom_nav_bar.dart';
+import 'package:a_to_z_shop/common/widgets/bottom_nav_bar.dart';
 import 'package:a_to_z_shop/features/address/screens/address_screen.dart';
 import 'package:a_to_z_shop/features/admin/screens/add_prod_screen.dart';
 import 'package:a_to_z_shop/features/auth/screens/authscreen.dart';

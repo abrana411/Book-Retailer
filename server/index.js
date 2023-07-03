@@ -1,5 +1,6 @@
 require('dotenv').config(); //configuring the dotenv file to access the content inside it
 const express = require('express');
+const cors = require("cors");
 const app = express();
 
 //Importing other files:-
@@ -16,6 +17,7 @@ const adminMiddleware = require('./middlewares/admin_middleware');
 const authMiddleware = require('./middlewares/authMiddleware');
 
 //using the middleWares:-
+app.use(cors());
 app.use(express.json());//for req.body (getting json body)
 app.use('/api',authRouter);
 app.use('/admin',adminMiddleware,adminRouter); //as i need to use the admin middleware in all routes of this so passing the middleware here directly
@@ -23,7 +25,7 @@ app.use('/api',authMiddleware,productRouter); //Auth middleware for all product 
 app.use('/api',authMiddleware,userRouter);
 
 //Getting port:-
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 
 //Start method:-

@@ -7,13 +7,13 @@ const authMid = async(req,res,next)=>{
     const token = req.header("User_token");
     if(!token)
     {
-        res.status(401).json({errMsg:"No token is provided, Access denied"});
+        return res.status(401).json({errMsg:"No token is provided, Access denied"});
     }
     
     const isVerified = await jwt.verify(token,process.env.JWT_SECRET);
     if(!isVerified)
     {
-        res.status(401).json({errMsg:"Verification of token failed, Access denied"});
+        return res.status(401).json({errMsg:"Verification of token failed, Access denied"});
     }
 
     //else if the token is valid then we will simply set the req.user so that in wheich ever route this is going next (since this is middle ware) the id of the signed in user could be accessed using the req.user only

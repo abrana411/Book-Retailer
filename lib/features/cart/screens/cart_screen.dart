@@ -1,4 +1,4 @@
-import 'package:a_to_z_shop/commonThings/widgets/custom_button.dart';
+import 'package:a_to_z_shop/common/widgets/custom_button.dart';
 import 'package:a_to_z_shop/features/address/screens/address_screen.dart';
 import 'package:a_to_z_shop/features/cart/widgets/cart_prod.dart';
 import 'package:a_to_z_shop/features/home/widgets/show_user_address.dart';
@@ -6,7 +6,7 @@ import 'package:a_to_z_shop/providers/user_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../helperConstants/global_variables.dart';
+import '../../../constant/global_variables.dart';
 import '../../search/screens/search_screen.dart';
 
 class CartScreen extends StatefulWidget {

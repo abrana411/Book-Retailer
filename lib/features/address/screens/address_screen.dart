@@ -1,12 +1,12 @@
-import 'package:a_to_z_shop/commonThings/widgets/customTextFormfield.dart';
+import 'package:a_to_z_shop/common/widgets/customTextFormfield.dart';
 import 'package:a_to_z_shop/features/address/services/address_services.dart';
-import 'package:a_to_z_shop/helperConstants/show_snack_bar.dart';
+import 'package:a_to_z_shop/constant/show_snack_bar.dart';
 import 'package:a_to_z_shop/providers/user_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:pay/pay.dart';
 import 'package:provider/provider.dart';
 
-import '../../../helperConstants/global_variables.dart';
+import '../../../constant/global_variables.dart';
 
 class AddressScreen extends StatefulWidget {
   static const routeName = "/address-screen";
@@ -26,7 +26,7 @@ class _AddressScreenState extends State<AddressScreen> {
   final _AddressFormKey = GlobalKey<FormState>();
   final Future<PaymentConfiguration> _googlePayConfigFuture =
       PaymentConfiguration.fromAsset('gpay.json');
-  List<PaymentItem> _paymentItems = [];
+  final List<PaymentItem> _paymentItems = [];
 
   //Address to use:-
   String addressToUse = "";

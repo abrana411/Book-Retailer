@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
 
-import '../../../helperConstants/error_handling.dart';
-import '../../../helperConstants/global_variables.dart';
-import '../../../helperConstants/show_snack_bar.dart';
+import '../../../constant/error_handling.dart';
+import '../../../constant/global_variables.dart';
+import '../../../constant/show_snack_bar.dart';
 import '../../../models/product_model.dart';
 import '../../../providers/user_provider.dart';
 

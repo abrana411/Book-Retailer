@@ -81,6 +81,7 @@ const getBestDeal = async(req,res)=>{
     }
 
     //Return the product with the max rating now:-
+    // console.log("This is the index: " + products[maxRatingProdIndex]);
     res.json(products[maxRatingProdIndex]);
   } catch (error) {
     res.status(500).json({errMsg:`An error has occured with message : ${error})`});

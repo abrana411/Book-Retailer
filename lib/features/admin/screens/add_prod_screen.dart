@@ -1,8 +1,8 @@
-import 'package:a_to_z_shop/commonThings/widgets/customTextFormfield.dart';
-import 'package:a_to_z_shop/commonThings/widgets/custom_button.dart';
+import 'package:a_to_z_shop/common/widgets/customTextFormfield.dart';
+import 'package:a_to_z_shop/common/widgets/custom_button.dart';
 import 'package:a_to_z_shop/features/admin/services/admin_services.dart';
-import 'package:a_to_z_shop/helperConstants/global_variables.dart';
-import 'package:a_to_z_shop/helperConstants/other_utils.dart';
+import 'package:a_to_z_shop/constant/global_variables.dart';
+import 'package:a_to_z_shop/constant/other_utils.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +22,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
   final TextEditingController priceController = TextEditingController();
   final TextEditingController descController = TextEditingController();
   AdminServices adminServices = AdminServices();
-  GlobalKey<FormState> _addNewProdFormKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> _addNewProdFormKey = GlobalKey<FormState>();
 
   //The initial value of the dropDown (for categories):-
   String currCategory = "Fashion";

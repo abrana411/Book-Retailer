@@ -1,11 +1,11 @@
 import 'package:a_to_z_shop/features/home/widgets/show_user_address.dart';
 import 'package:a_to_z_shop/features/search/services/search_services.dart';
 import 'package:a_to_z_shop/features/search/widgets/show_search_prod.dart';
-import 'package:a_to_z_shop/helperConstants/screen_loader.dart';
+import 'package:a_to_z_shop/constant/screen_loader.dart';
 import 'package:a_to_z_shop/models/product_model.dart';
 import 'package:flutter/material.dart';
 
-import '../../../helperConstants/global_variables.dart';
+import '../../../constant/global_variables.dart';
 import '../../prodDetails/screens/product_detail_screen.dart';
 
 class SearchScreen extends StatefulWidget {

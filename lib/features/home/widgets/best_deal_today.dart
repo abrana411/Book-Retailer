@@ -1,6 +1,6 @@
 import 'package:a_to_z_shop/features/home/services/home_services.dart';
 import 'package:a_to_z_shop/features/prodDetails/screens/product_detail_screen.dart';
-import 'package:a_to_z_shop/helperConstants/screen_loader.dart';
+import 'package:a_to_z_shop/constant/screen_loader.dart';
 import 'package:a_to_z_shop/models/product_model.dart';
 import 'package:flutter/material.dart';
 
@@ -23,6 +23,7 @@ class _DealOfTheDayState extends State<DealOfTheDay> {
 
   void fetchTheDealOfTheDay() async {
     dealProd = await homeServices.fetchDealOfDay(context: context);
+    // print("The name is" + dealProd!.name);
     setState(() {});
   }
 
@@ -55,12 +56,14 @@ class _DealOfTheDayState extends State<DealOfTheDay> {
                       ),
                     ),
                     //Show the main image of the deal
-                    Image.network(
-                      dealProd!.images[
-                          0], //passing the images (0th one for the main display)
-                      fit: BoxFit.fitHeight,
-                      height: 200,
-                    ),
+                    dealProd!.images.isEmpty
+                        ? Container()
+                        : Image.network(
+                            dealProd!.images[
+                                0], //passing the images (0th one for the main display)
+                            fit: BoxFit.fitHeight,
+                            height: 200,
+                          ),
                     //Text to show the price and the below another text to show details about the product in a line (like description of the product)
                     Container(
                       alignment: Alignment.topLeft,

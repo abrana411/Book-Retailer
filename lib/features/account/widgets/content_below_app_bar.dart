@@ -1,4 +1,4 @@
-import 'package:a_to_z_shop/helperConstants/global_variables.dart';
+import 'package:a_to_z_shop/constant/global_variables.dart';
 import 'package:a_to_z_shop/providers/user_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

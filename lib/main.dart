@@ -1,7 +1,7 @@
-import 'package:a_to_z_shop/commonThings/widgets/bottom_nav_bar.dart';
+import 'package:a_to_z_shop/common/widgets/bottom_nav_bar.dart';
 import 'package:a_to_z_shop/features/auth/screens/authscreen.dart';
 import 'package:a_to_z_shop/features/auth/services/auth_services.dart';
-import 'package:a_to_z_shop/helperConstants/global_variables.dart';
+import 'package:a_to_z_shop/constant/global_variables.dart';
 import 'package:a_to_z_shop/providers/user_provider.dart';
 import 'package:a_to_z_shop/router.dart';
 import 'package:flutter/material.dart';
