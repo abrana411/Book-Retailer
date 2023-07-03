@@ -1,12 +1,10 @@
-import 'package:a_to_z_shop/features/home/widgets/best_deal_today.dart';
-import 'package:a_to_z_shop/features/home/widgets/famours_categories.dart';
-import 'package:a_to_z_shop/features/home/widgets/show_image_slider.dart';
-import 'package:a_to_z_shop/features/home/widgets/show_user_address.dart';
-import 'package:a_to_z_shop/features/search/screens/search_screen.dart';
-import 'package:a_to_z_shop/helperConstants/global_variables.dart';
-import 'package:a_to_z_shop/providers/user_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+
+import '../widgets/show_image_slider.dart';
+import '../widgets/show_user_address.dart';
+import '../widgets/famous_categories.dart';
+import '../../search/screens/search_screen.dart';
+import '../../../constants/global_variables.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = "/home";
@@ -107,9 +105,9 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
         ),
-        body: SingleChildScrollView(
+        body: const SingleChildScrollView(
           child: Column(
-            children: const [
+            children: [
               ShowUserAddress(),
               SizedBox(
                 height: 10,
@@ -122,7 +120,7 @@ class _HomeScreenState extends State<HomeScreen> {
               SizedBox(
                 height: 10,
               ),
-              DealOfTheDay(),
+              // DealOfTheDay(),
             ],
           ),
         ));

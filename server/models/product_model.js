@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const ratingSchema = require('./ratingModel');
+const ratingSchema = require('./rating_model');
 
 const productSchema = new mongoose.Schema({
     name: {
@@ -31,10 +31,12 @@ const productSchema = new mongoose.Schema({
         type: String,
         required: true,
       },
+      sellerId: {
+        type: String,
+        required: true,
+      },
       //Rating array consisting of the rating schema as an element
       ratings:[ratingSchema],
-    
-
 });
 
 const prodModel = mongoose.model('Product', productSchema); //creading a collection Product (in the mongodb it will be products) and assigning the schema of each document it will have in the product schema

@@ -1,13 +1,13 @@
-import 'package:a_to_z_shop/commonThings/widgets/bottom_nav_bar.dart';
-import 'package:a_to_z_shop/features/auth/screens/authscreen.dart';
-import 'package:a_to_z_shop/features/auth/services/auth_services.dart';
-import 'package:a_to_z_shop/helperConstants/global_variables.dart';
-import 'package:a_to_z_shop/providers/user_provider.dart';
-import 'package:a_to_z_shop/router.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import './router.dart';
+import 'providers/user_provider.dart';
+import 'features/auth/screens/auth_screen.dart';
+import 'constants/global_variables.dart';
 import 'features/admin/screens/admin_screen.dart';
+import 'common/widgets/bottom_nav_bar.dart';
+import 'features/auth/services/auth_services.dart';
 
 void main() {
   runApp(MultiProvider(providers: [
@@ -72,6 +72,7 @@ class _MyAppState extends State<MyApp> {
               ? const AdminScreen() //If the user type is not 'user' then it means it is the admin and we will display the admin screen then, else the actual home ie the bottom nav screen with home seleceted by default
               : const BottomNavBar()
           : const AuthScreen(),
+      // home: const AdminScreen(),
     );
   }
 }

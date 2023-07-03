@@ -1,12 +1,12 @@
-import 'package:a_to_z_shop/commonThings/widgets/customTextFormfield.dart';
-import 'package:a_to_z_shop/features/address/services/address_services.dart';
-import 'package:a_to_z_shop/helperConstants/show_snack_bar.dart';
-import 'package:a_to_z_shop/providers/user_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:pay/pay.dart';
 import 'package:provider/provider.dart';
 
-import '../../../helperConstants/global_variables.dart';
+import '../services/address_services.dart';
+import '../../../providers/user_provider.dart';
+import '../../../constants/show_snack_bar.dart';
+import '../../../constants/global_variables.dart';
+import '../../../common/widgets/custom_textformfield.dart';
 
 class AddressScreen extends StatefulWidget {
   static const routeName = "/address-screen";

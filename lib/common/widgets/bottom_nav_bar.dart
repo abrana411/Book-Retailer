@@ -1,11 +1,12 @@
-import 'package:a_to_z_shop/features/account/screens/account_screen.dart';
-import 'package:a_to_z_shop/features/cart/screens/cart_screen.dart';
-import 'package:a_to_z_shop/features/home/screens/home_screen.dart';
-import 'package:a_to_z_shop/helperConstants/global_variables.dart';
-import 'package:a_to_z_shop/providers/user_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:provider/provider.dart';
+
+import '../../features/account/screens/account_screen.dart';
+import '../../features/cart/screens/cart_screen.dart';
+import '../../features/home/screens/home_screen.dart';
+import '../../constants/global_variables.dart';
+import '../../providers/user_provider.dart';
 
 class BottomNavBar extends StatefulWidget {
   static const String routeName = "/actual-home";

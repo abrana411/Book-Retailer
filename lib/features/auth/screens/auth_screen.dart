@@ -1,8 +1,9 @@
-import 'package:a_to_z_shop/commonThings/widgets/customTextFormfield.dart';
-import 'package:a_to_z_shop/commonThings/widgets/custom_button.dart';
-import 'package:a_to_z_shop/features/auth/services/auth_services.dart';
-import 'package:a_to_z_shop/helperConstants/global_variables.dart';
 import 'package:flutter/material.dart';
+
+import '../services/auth_services.dart';
+import '../../../common/widgets/custom_textformfield.dart';
+import '../../../common/widgets/custom_button.dart';
+import '../../../constants/global_variables.dart';
 
 enum AuthFunction {
   //There can be two types of user one has an account and want to logs in and another which wants to create a new account ie sign up, so creating a enup for that
@@ -28,9 +29,9 @@ class _AuthScreenState extends State<AuthScreen> {
       GlobalKey<FormState>(); //creating a key for existing account (login)
   final AuthService authService = AuthService();
 
-  TextEditingController _nameController = TextEditingController();
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   @override
   void dispose() {

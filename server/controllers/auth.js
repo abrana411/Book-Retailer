@@ -1,9 +1,9 @@
-const userModel = require('../models/userModel');
+const userModel = require('../models/user_model');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 //Post request to create a new user:
-const signUpUser = async (req,res)=>{
+const signUpUser = async (req,res) => {
     try {
        //getting the name,email and the password of the user which we are about to create from the req.body as the frontend will pass it from there end
        const {name,email,password} = req.body;
@@ -69,7 +69,7 @@ const signInUser = async (req, res) => {
 
 
 //To check if the token is valid or not:-
-const validatetoken = async (req,res)=>{
+const validatetoken = async (req,res) => {
    try {
       // console.log("This comes here!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
       //We will receive the token from the header here 
@@ -97,7 +97,7 @@ const validatetoken = async (req,res)=>{
 
 
 //Get the users data
-const getUsersData = async (req,res)=>{
+const getUsersData = async (req,res) => {
     try {
       //will get the below from the auth middleware
       const userId = req.user;

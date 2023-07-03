@@ -3,7 +3,7 @@ const express = require('express');
 const app = express();
 
 //Importing other files:-
-const DbConnect = require('./db/connect');
+const connectDB = require('./db/connect');
 
 //importing the routers:-
 const authRouter = require('./routes/auth');
@@ -13,7 +13,7 @@ const userRouter = require('./routes/user');
 
 //importing the middlewares:-
 const adminMiddleware = require('./middlewares/admin_middleware');
-const authMiddleware = require('./middlewares/authMiddleware');
+const authMiddleware = require('./middlewares/auth_middleware');
 
 //using the middleWares:-
 app.use(express.json());//for req.body (getting json body)
@@ -30,7 +30,7 @@ const PORT = process.env.PORT || 3000;
 const start = async function(){
    try {
      //Try connecting to the data base:-
-     await DbConnect(process.env.MONGO_URL);
+     await connectDB(process.env.MONGO_URL);
      console.log("Database is connected!!");
      app.listen(PORT,()=>{ //have to give the some ip address here since the android emulator has problem when using the local host sometimes
         console.log(`Listening on ${PORT}`);

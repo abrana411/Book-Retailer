@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { productSchema } = require('./productModel');
+const { productSchema } = require('./product_model');
 
 const orderSchema = new mongoose.Schema({
     //This will have follwoing things:-
@@ -15,28 +15,28 @@ const orderSchema = new mongoose.Schema({
       ],
     //Total price of all the things of an order
     totalPrice: {
-    type: Number,
-    required: true,
+      type: Number,
+      required: true,
     },
     //Adress of the user , ie where we are shipping those
     address: {
-    type: String,
-    required: true,
+      type: String,
+      required: true,
     },
     //The user who has ordered (to show the myOrders screen by fetching the orders with the help of users id)
     userId: {
-    required: true,
-    type: String,
+      required: true,
+      type: String,
     },
     //Time of ordering
     orderedAt: {
-    type: Number,
-    required: true,
+      type: Number,
+      required: true,
     },
     //status -> 0(pending) ,1(shipped) , 2(delivered) , 3(done)  ,something like this (and the status will be changed by the admin only)
     status: {
-    type: Number,
-    default: 0,
+      type: Number,
+      default: 0,
     },
 });
 

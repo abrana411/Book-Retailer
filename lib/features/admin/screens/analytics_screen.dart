@@ -1,10 +1,9 @@
-import 'dart:ffi';
-
-import 'package:a_to_z_shop/features/admin/models/sale_model.dart';
-import 'package:a_to_z_shop/features/admin/services/admin_services.dart';
-import 'package:a_to_z_shop/helperConstants/screen_loader.dart';
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
+
+import '../models/sale_model.dart';
+import '../services/admin_services.dart';
+import '../../../constants/screen_loader.dart';
 
 class AnalyticsScreen extends StatefulWidget {
   const AnalyticsScreen({super.key});

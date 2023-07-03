@@ -1,15 +1,15 @@
 import 'dart:convert';
 
-import 'package:a_to_z_shop/models/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
 
-import '../../../helperConstants/error_handling.dart';
-import '../../../helperConstants/global_variables.dart';
-import '../../../helperConstants/show_snack_bar.dart';
+import '../../../models/user_model.dart';
 import '../../../models/product_model.dart';
 import '../../../providers/user_provider.dart';
+import '../../../constants/show_snack_bar.dart';
+import '../../../constants/error_handling.dart';
+import '../../../constants/global_variables.dart';
 
 class ProductDetailsService {
   //1)Function to rate a product:-

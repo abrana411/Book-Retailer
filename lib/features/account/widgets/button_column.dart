@@ -1,6 +1,9 @@
-import 'package:a_to_z_shop/features/account/services/account_services.dart';
-import 'package:a_to_z_shop/features/account/widgets/acc_btns.dart';
 import 'package:flutter/material.dart';
+
+import 'account_buttons.dart';
+import '../screens/sell_products_screen.dart';
+import '../screens/add_products_screen.dart';
+import '../services/account_services.dart';
 
 class ButtonColumn extends StatelessWidget {
   const ButtonColumn({super.key});
@@ -15,7 +18,11 @@ class ButtonColumn extends StatelessWidget {
             AccountButton(
                 textToShow: "Your Orders", whatWillHappenOnClicking: () {}),
             AccountButton(
-                textToShow: "Sell Products", whatWillHappenOnClicking: () {}),
+              textToShow: "Sell Products",
+              whatWillHappenOnClicking: () {
+                Navigator.pushNamed(context, SellProductsScreen.routeName);
+              },
+            ),
           ],
         ),
         Row(

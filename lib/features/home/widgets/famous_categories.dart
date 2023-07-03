@@ -1,6 +1,7 @@
-import 'package:a_to_z_shop/features/home/screens/Cat_screen.dart';
-import 'package:a_to_z_shop/helperConstants/global_variables.dart';
 import 'package:flutter/material.dart';
+
+import '../screens/category_screen.dart';
+import '../../../constants/global_variables.dart';
 
 class FamCategories extends StatelessWidget {
   const FamCategories({super.key});
