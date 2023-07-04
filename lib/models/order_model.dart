@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:a_to_z_shop/models/product_model.dart';
+import '../models/product_model.dart';
 
 class Order {
   final String id;

@@ -1,5 +1,5 @@
-const orderModel = require("../models/orderModel");
-const {prodModel} = require("../models/productModel");
+const orderModel = require("../models/order_model");
+const {productModel} = require("../models/product_model");
 
 //API to add a new product to db:
 const addProductForSale = async (req,res)=>{
@@ -7,7 +7,7 @@ const addProductForSale = async (req,res)=>{
         //these names should be matching with the ones in the model of the product in the client side because we are directly adding these same name to the mongo
         const { name, description, images, quantity, price, category } = req.body;
         //just like we created a user simply create an instance of the product model and save it using the .save() to the mongo db and then return it to the client side
-        let newProd = new prodModel({
+        let newProd = new productModel({
             name,
             description,
             images,
@@ -20,14 +20,12 @@ const addProductForSale = async (req,res)=>{
     } catch (error) {
         res.status(500).json({errMsg:`An error has occured with message : ${error}`});
     }
-    
-
 };
 
 //API to fetch all the products:-
-const fetchallProducts = async(req,res)=>{
+const fetchAllProducts = async(req,res)=>{
   try {
-    const prods = await prodModel.find({});//nothing is given so find all
+    const prods = await productModel.find({});//nothing is given so find all
     res.json(prods);
   } catch (error) {
     res.status(500).json({errMsg:`An error has occured with message : ${error}`});
@@ -38,7 +36,7 @@ const fetchallProducts = async(req,res)=>{
 const deleteProduct = async(req,res)=>{
     try{
       const {id} = req.body;
-      const productAfterDelete = await prodModel.findByIdAndDelete(id);
+      const productAfterDelete = await productModel.findByIdAndDelete(id);
       res.json(productAfterDelete);
     }catch(error)
     {
@@ -81,11 +79,11 @@ const getTotalEarnings = async (req,res)=>{
        totalEarnings += currOrderPrice;
     }
     // Getting the earning for each category now:-
-    let mobileEarnings = await getCategoryWiseEasrningsFromOrders("Mobiles");
-    let essentialEarnings = await getCategoryWiseEasrningsFromOrders("Essentials");
-    let applianceEarnings = await getCategoryWiseEasrningsFromOrders("Appliances");
-    let booksEarnings = await getCategoryWiseEasrningsFromOrders("Books");
-    let fashionEarnings = await getCategoryWiseEasrningsFromOrders("Fashion");
+    let mobileEarnings = await getCategoryWiseEarningsFromOrders("Mobiles");
+    let essentialEarnings = await getCategoryWiseEarningsFromOrders("Essentials");
+    let applianceEarnings = await getCategoryWiseEarningsFromOrders("Appliances");
+    let booksEarnings = await getCategoryWiseEarningsFromOrders("Books");
+    let fashionEarnings = await getCategoryWiseEarningsFromOrders("Fashion");
    
     //creating a object and sending it to the clients side now
     let earnings = {
@@ -103,7 +101,7 @@ const getTotalEarnings = async (req,res)=>{
   }
 };
 
-async function getCategoryWiseEasrningsFromOrders(category){
+async function getCategoryWiseEarningsFromOrders(category){
     //Get the orders belonging to the passed category , and how to do it?
     //we know that in the orders we have products fields and in products we have product (fild of the object at each index) and in the product we have category so have to match it like this (and then make it a string (as that is the convention while matching the chaining products))
     
@@ -121,6 +119,12 @@ async function getCategoryWiseEasrningsFromOrders(category){
         }
       }
       return catEarnings;
-   
 }
-module.exports = {addProductForSale,fetchallProducts,deleteProduct,getAllOrders,changeStatusOfOrder,getTotalEarnings};
+module.exports = {
+  addProductForSale,
+  fetchAllProducts,
+  deleteProduct,
+  getAllOrders,
+  changeStatusOfOrder,
+  getTotalEarnings
+};

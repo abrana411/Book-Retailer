@@ -1,7 +1,7 @@
 import 'package:a_to_z_shop/features/account/widgets/single_product.dart';
 import 'package:a_to_z_shop/features/admin/services/admin_services.dart';
-import 'package:a_to_z_shop/features/orderDetails/screens/order_detail_screen.dart';
-import 'package:a_to_z_shop/constant/screen_loader.dart';
+import 'package:a_to_z_shop/features/order_details/screens/order_details_screen.dart';
+import 'package:a_to_z_shop/constants/screen_loader.dart';
 import 'package:a_to_z_shop/models/order_model.dart';
 import 'package:flutter/material.dart';
 

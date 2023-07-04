@@ -1,10 +1,11 @@
-import 'package:a_to_z_shop/features/account/services/account_services.dart';
-import 'package:a_to_z_shop/features/account/widgets/single_product.dart';
-import 'package:a_to_z_shop/features/orderDetails/screens/order_detail_screen.dart';
-import 'package:a_to_z_shop/constant/global_variables.dart';
-import 'package:a_to_z_shop/constant/screen_loader.dart';
-import 'package:a_to_z_shop/models/order_model.dart';
 import 'package:flutter/material.dart';
+
+import '../../../models/order_model.dart';
+import '../widgets/single_product.dart';
+import '../services/account_services.dart';
+import '../../../constants/screen_loader.dart';
+import '../../../constants/global_variables.dart';
+import '../../order_details/screens/order_details_screen.dart';
 
 class UserOrders extends StatefulWidget {
   const UserOrders({super.key});

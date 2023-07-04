@@ -1,6 +1,7 @@
-import 'package:a_to_z_shop/providers/user_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import '../../../providers/user_provider.dart';
 
 class ShowUserAddress extends StatelessWidget {
   const ShowUserAddress({super.key});

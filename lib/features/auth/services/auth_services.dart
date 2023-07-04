@@ -1,18 +1,16 @@
-//A class having all the services (business logic , signup , login, etc) of the Auththentication part
 import 'dart:convert';
 
-import 'package:a_to_z_shop/common/widgets/bottom_nav_bar.dart';
-import 'package:a_to_z_shop/constant/error_handling.dart';
-import 'package:a_to_z_shop/constant/global_variables.dart';
-import 'package:a_to_z_shop/constant/show_snack_bar.dart';
-// import 'package:a_to_z_shop/models/user_model.dart';
-import 'package:a_to_z_shop/providers/user_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:http/http.dart'
-    as http; //to make the api calls to the bakend (node server)
+import 'package:http/http.dart' as http;
+
+import '../../../providers/user_provider.dart';
+import '../../../constants/error_handling.dart';
+import '../../../constants/global_variables.dart';
+import '../../../constants/show_snack_bar.dart';
+import '../../../common/widgets/bottom_nav_bar.dart';
 
 class AuthService {
   //signup api calling to the backend:-

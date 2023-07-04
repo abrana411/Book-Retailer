@@ -1,6 +1,6 @@
-const {prodModel} = require('../models/productModel');
-const userModel = require('../models/userModel');
-const orderModel = require('../models/orderModel');
+const {productModel} = require('../models/product_model');
+const userModel = require('../models/user_model');
+const orderModel = require('../models/order_model');
 
 //API to add a product(quantity wise) to cart of current user
 const addProductToUserCart = async (req,res)=>{
@@ -9,7 +9,7 @@ const addProductToUserCart = async (req,res)=>{
     const userId = req.user;//getting user id from the .user (which we set in the auth middleware)
 
     //get the porduct:-
-    const product = await prodModel.findById(id);
+    const product = await productModel.findById(id);
     let currUser = await userModel.findById(userId);
 
     //check if the currUser has any item in cart or not:-
@@ -59,7 +59,7 @@ const removeFromCart = async (req,res)=>{
     const {id} = req.params;//getting the product id from the params
     const userId = req.user;
     //get the porduct:-
-    const product = await prodModel.findById(id);
+    const product = await productModel.findById(id);
     let currUser = await userModel.findById(userId);
  
     //No need to chjeck if this product is in cart or not , because the user can go to this API only if its showing in the cart screen
@@ -104,14 +104,14 @@ const addUserAddress = async(req,res)=>{
 };
 
 //Route to post a order document , ie creating a new order
-const CreateAnOrder = async(req,res)=>{
+const createOrder = async(req,res)=>{
   try {
     const {cart,totalPrice,address} = req.body;
     let products = [];
     for(let i=0;i<cart.length;i++)
     {
       //Check if each product in the cart is in stock or not (by comparing the quantity the user is purchansing and the amount we have)
-      let product = await prodModel.findById(cart[i].product._id);
+      let product = await productModel.findById(cart[i].product._id);
       if(product.quantity >= cart[i].quantity) //then its fine
       {
         //so decrease the quantity of the product and save it int the db
@@ -153,6 +153,23 @@ const getOrders = async (req,res)=>{
   }
 };
 
+const getListedProducts = async (req,res) => {
+  try {
+    const id = req.user;
+    const products = await productModel.find({sellerId: id});
+    // console.log("The products are :" + products);
+    res.json(products);
+  } catch (error) {
+    res.status(500).json({error: `An error has occured with message: ${error}`});
+  }
+}
 
 
-module.exports = {addProductToUserCart,removeFromCart,addUserAddress,CreateAnOrder,getOrders};
+module.exports = {
+  addProductToUserCart,
+  removeFromCart,
+  addUserAddress,
+  createOrder,
+  getOrders,
+  getListedProducts,
+};

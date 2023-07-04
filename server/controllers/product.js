@@ -1,4 +1,4 @@
-const {prodModel} = require('../models/productModel');
+const {prodModel} = require('../models/product_model');
 
 // Api for fetching the products of a certain category:
 const FilterProductByCategory = async (req,res)=>{
@@ -88,4 +88,30 @@ const getBestDeal = async(req,res)=>{
   }
 };
 
-module.exports = {FilterProductByCategory,getSerachItems,rateAProduct,getBestDeal};
+const listProduct = async (req,res) => {
+  const sellerId = req.user;
+  try {
+    const { name, description, images, quantity, price, category } = req.body;
+    let newProduct = new prodModel({
+        name,
+        description,
+        images,
+        quantity,
+        price,
+        category,
+        sellerId,
+    });
+    newProduct = await newProduct.save();
+    res.json(newProduct);
+} catch (error) {
+    res.status(500).json({errMsg:`An error has occured with message : ${error}`});
+}
+}
+
+module.exports = {
+  FilterProductByCategory,
+  getSerachItems,
+  rateAProduct,
+  getBestDeal,
+  listProduct,
+};

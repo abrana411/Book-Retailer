@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const UserModel = require('../models/userModel');
+const UserModel = require('../models/user_model');
 
 const adminMid = async (req,res,next)=>{
    //Everything will be same as the auth middleware just one more condition will be there , ki we will check if the user is of type admin or not , if not then we will return an error

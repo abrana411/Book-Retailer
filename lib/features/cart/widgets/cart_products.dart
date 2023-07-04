@@ -1,9 +1,10 @@
-import 'package:a_to_z_shop/features/cart/services/cart_services.dart';
-import 'package:a_to_z_shop/features/prodDetails/services/product_detail_service.dart';
-import 'package:a_to_z_shop/models/product_model.dart';
-import 'package:a_to_z_shop/providers/user_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import '../services/cart_services.dart';
+import '../../product_details/services/product_detail_service.dart';
+import '../../../models/product_model.dart';
+import '../../../providers/user_provider.dart';
 
 class EachCartProd extends StatefulWidget {
   final int prodIndex;

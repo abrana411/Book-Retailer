@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:a_to_z_shop/models/rating_model.dart';
+import './rating_model.dart';
 
 //this will be the product (ie the structure of the product we will be using)
 class Product {
@@ -12,6 +12,7 @@ class Product {
   final String category;
   final double price;
   final String? id; //The product id which we will get from the mongo db
+  final String? sellerId;
   final List<Rating>?
       rating; //list of {userId,rating} ie of the Rating model , as from the backend we will be having list of object like shown so have to convert that into the Rating model instance which we are doing below in the
   Product(
@@ -21,6 +22,7 @@ class Product {
       required this.images,
       required this.category,
       required this.price,
+      this.sellerId,
       this.id,
       this.rating});
 
@@ -34,6 +36,7 @@ class Product {
       'category': category,
       'price': price,
       'id': id,
+      'sellerId': sellerId,
       'rating': rating,
     };
   }
@@ -47,6 +50,7 @@ class Product {
       images: List<String>.from(map['images']),
       category: map['category'] ?? '',
       price: map['price']?.toDouble() ?? 0.0,
+      sellerId: map['sellerId'] ?? '',
       id: map[
           '_id'], //_id because in the map which we will be getting (after json.decode(api vala json string)) it will have the product id as _id just like we did in user's model
       //so what is happening below is , from the server side we will get a json string which we will convert to a map using jsonDecode and then pass that to this function, now the ratings field will be having json object of the rating schema which is having {userId and Rating fields} so we have to convert that into a Rating Model instance of this one which we created here in the dart (front end) so have to map that rating to a list of rating

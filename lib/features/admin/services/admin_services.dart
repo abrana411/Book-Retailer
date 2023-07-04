@@ -1,18 +1,18 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:a_to_z_shop/features/admin/models/sale_model.dart';
-import 'package:a_to_z_shop/constant/error_handling.dart';
-import 'package:a_to_z_shop/models/order_model.dart';
-import 'package:a_to_z_shop/models/product_model.dart';
-import 'package:a_to_z_shop/providers/user_provider.dart';
 import 'package:cloudinary_public/cloudinary_public.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 
-import '../../../constant/global_variables.dart';
-import '../../../constant/show_snack_bar.dart';
+import '../models/sale_model.dart';
+import '../../../models/order_model.dart';
+import '../../../models/product_model.dart';
+import '../../../providers/user_provider.dart';
+import '../../../constants/error_handling.dart';
+import '../../../constants/show_snack_bar.dart';
+import '../../../constants/global_variables.dart';
 
 class AdminServices {
   //1)Function to sell the product (ie we admin wants to sell some new products , ie when add them from the add product to sell screen)
@@ -23,6 +23,7 @@ class AdminServices {
     required double quantity,
     required List<File> prodImages,
     required String category,
+    required String sellerId,
     required BuildContext context,
   }) async {
     try {
@@ -43,6 +44,7 @@ class AdminServices {
         images: ImageUrls,
         category: category,
         price: price,
+        sellerId: sellerId,
       );
 
       //http post req:-

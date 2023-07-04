@@ -1,9 +1,9 @@
-//For handling the http error we will use this method
 import 'dart:convert';
 
-import 'package:a_to_z_shop/constant/show_snack_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+
+import './show_snack_bar.dart';
 
 void httphandleError({
   required http.Response

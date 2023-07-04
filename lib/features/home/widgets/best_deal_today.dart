@@ -1,8 +1,9 @@
-import 'package:a_to_z_shop/features/home/services/home_services.dart';
-import 'package:a_to_z_shop/features/prodDetails/screens/product_detail_screen.dart';
-import 'package:a_to_z_shop/constant/screen_loader.dart';
-import 'package:a_to_z_shop/models/product_model.dart';
 import 'package:flutter/material.dart';
+
+import '../services/home_services.dart';
+import '../../../models/product_model.dart';
+import '../../../constants/screen_loader.dart';
+import '../../product_details/screens/product_detail_screen.dart';
 
 class DealOfTheDay extends StatefulWidget {
   const DealOfTheDay({super.key});
@@ -67,8 +68,11 @@ class _DealOfTheDayState extends State<DealOfTheDay> {
                     //Text to show the price and the below another text to show details about the product in a line (like description of the product)
                     Container(
                       alignment: Alignment.topLeft,
-                      padding:
-                          const EdgeInsets.only(left: 10, top: 10, bottom: 5),
+                      padding: const EdgeInsets.only(
+                        left: 10,
+                        top: 10,
+                        bottom: 5,
+                      ),
                       margin: const EdgeInsets.only(left: 10),
                       child: Text(
                         "Rs ${dealProd!.price}",

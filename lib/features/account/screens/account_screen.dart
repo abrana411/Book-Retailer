@@ -1,9 +1,9 @@
-import 'package:a_to_z_shop/features/account/widgets/button_column.dart';
-import 'package:a_to_z_shop/features/account/widgets/user_orders.dart';
-import 'package:a_to_z_shop/constant/global_variables.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/content_below_app_bar.dart';
+import '../widgets/button_column.dart';
+import '../widgets/user_orders.dart';
+import '../../../constants/global_variables.dart';
 
 class AccountScreen extends StatelessWidget {
   const AccountScreen({super.key});

@@ -1,6 +1,7 @@
-import 'package:a_to_z_shop/features/search/widgets/show_rating_stars.dart';
-import 'package:a_to_z_shop/models/product_model.dart';
 import 'package:flutter/material.dart';
+
+import '../widgets/show_rating_stars.dart';
+import '../../../models/product_model.dart';
 
 class ShowSearchProduct extends StatelessWidget {
   final Product product;

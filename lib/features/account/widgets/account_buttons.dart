@@ -4,10 +4,11 @@ class AccountButton extends StatelessWidget {
   //We need the text to show and also the callback function for the button
   final String textToShow;
   final VoidCallback whatWillHappenOnClicking;
-  const AccountButton(
-      {super.key,
-      required this.textToShow,
-      required this.whatWillHappenOnClicking});
+  const AccountButton({
+    super.key,
+    required this.textToShow,
+    required this.whatWillHappenOnClicking,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -20,11 +21,12 @@ class AccountButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(40),
         ),
         child: TextButton(
-            onPressed: whatWillHappenOnClicking,
-            child: Text(
-              textToShow,
-              style: const TextStyle(fontSize: 15, color: Colors.black),
-            )),
+          onPressed: whatWillHappenOnClicking,
+          child: Text(
+            textToShow,
+            style: const TextStyle(fontSize: 15, color: Colors.black),
+          ),
+        ),
       ),
     );
   }

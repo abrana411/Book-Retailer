@@ -1,6 +1,7 @@
-import 'package:a_to_z_shop/constant/global_variables.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+
+import '../../../constants/global_variables.dart';
 
 class ShowStars extends StatelessWidget {
   final double prodRating;

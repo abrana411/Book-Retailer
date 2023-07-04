@@ -1,16 +1,16 @@
-import 'package:a_to_z_shop/common/widgets/custom_button.dart';
-import 'package:a_to_z_shop/features/prodDetails/services/product_detail_service.dart';
-import 'package:a_to_z_shop/features/search/screens/search_screen.dart';
-import 'package:a_to_z_shop/features/search/widgets/show_rating_stars.dart';
-import 'package:a_to_z_shop/models/product_model.dart';
-import 'package:a_to_z_shop/models/user_model.dart';
-import 'package:a_to_z_shop/providers/user_provider.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:provider/provider.dart';
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
-import '../../../constant/global_variables.dart';
+import '../../../models/user_model.dart';
+import '../../../models/product_model.dart';
+import '../../../providers/user_provider.dart';
+import '../services/product_detail_service.dart';
+import '../../search/screens/search_screen.dart';
+import '../../search/widgets/show_rating_stars.dart';
+import '../../../constants/global_variables.dart';
+import '../../../common/widgets/custom_button.dart';
 
 class ProductDetailScreen extends StatefulWidget {
   static const String routeName = "/Prod_details_screen";

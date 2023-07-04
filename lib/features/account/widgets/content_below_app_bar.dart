@@ -1,7 +1,8 @@
-import 'package:a_to_z_shop/constant/global_variables.dart';
-import 'package:a_to_z_shop/providers/user_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import '../../../providers/user_provider.dart';
+import '../../../constants/global_variables.dart';
 
 class BelowAppBarInAccount extends StatelessWidget {
   const BelowAppBarInAccount({super.key});

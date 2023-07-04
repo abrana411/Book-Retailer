@@ -1,8 +1,9 @@
-import 'package:a_to_z_shop/features/admin/screens/analytics_screen.dart';
-import 'package:a_to_z_shop/features/admin/screens/orders_screen.dart';
-import 'package:a_to_z_shop/features/admin/screens/products_screen.dart';
-import 'package:a_to_z_shop/constant/global_variables.dart';
 import 'package:flutter/material.dart';
+
+import '../screens/analytics_screen.dart';
+import '../screens/orders_screen.dart';
+import '../screens/products_screen.dart';
+import '../../../constants/global_variables.dart';
 
 class AdminScreen extends StatefulWidget {
   const AdminScreen({super.key});
