@@ -11,11 +11,29 @@ const addProductToUserCart = async (req,res)=>{
     //get the porduct:-
     const product = await productModel.findById(id);
     let currUser = await userModel.findById(userId);
+    
+    if(!product)
+    {
+      // let productInCart = false;
+      // for(let i=0;i<currUser.cart.length;i++)
+      // {
+      //     if(String(currUser.cart[i].product._id).equals(product._id)) 
+      //     {
+      //       productInCart = true;
+      //     }
+      // }
+      // if(productInCart)
+      // {
+      //   currUser.cart.splice(i,1);
+      // }
 
+      //BUG: (If someone deletes a product and this product remains in cart of some user (Then it will not get deleted from there))
+
+      return res.json()
+    }
     //check if the currUser has any item in cart or not:-
     if(currUser.cart.length == 0)
     {
-        //Then add new to cart:-
         currUser.cart.push({product,quantity:1});
     }
     else
@@ -116,7 +134,14 @@ const createOrder = async(req,res)=>{
       {
         //so decrease the quantity of the product and save it int the db
         product.quantity -= cart[i].quantity;
+        // console.log(product.quantity);
+        //Added this condition for ensuring we do not have out of stock things
         product = await product.save();
+
+        if(product.quantity == 0)
+        {
+          await productModel.findByIdAndDelete(product._id);
+        }
 
         //also add this product to the products now (which will go in the order) along with the quantity use is purchasing
         products.push({product,quantity:cart[i].quantity});
@@ -124,7 +149,7 @@ const createOrder = async(req,res)=>{
       else
       {
         //out of stock error:-
-        res.status(500).json({errMsg:`${product.name} is out of stock`});
+        return res.status(500).json({errMsg:`${product.name} is out of stock`});
       }
     }
 
@@ -163,6 +188,7 @@ const getListedProducts = async (req,res) => {
     res.status(500).json({error: `An error has occured with message: ${error}`});
   }
 }
+
 
 
 module.exports = {

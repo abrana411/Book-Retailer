@@ -80,7 +80,7 @@ class AdminServices {
     List<Product> prods = [];
     try {
       var response = await http.get(
-        Uri.parse("${GlobalVariables.initialUrl}/admin/"),
+        Uri.parse("${GlobalVariables.initialUrl}/api/getAll"),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
           'User_token': currUser.user.token,

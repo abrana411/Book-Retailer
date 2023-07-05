@@ -1,7 +1,5 @@
 const express =require('express');
 const {
-    addProductForSale,
-    fetchAllProducts,
     deleteProduct,
     getAllOrders,
     changeStatusOfOrder,
@@ -10,8 +8,8 @@ const {
 
 const router = express.Router();
 
-router.route('/add-product-to-sell').post(addProductForSale);
-router.route('/').get(fetchAllProducts).delete(deleteProduct);
+// router.route('/add-product-to-sell').post(addProductForSale);
+router.route('/').delete(deleteProduct);
 router.route('/getAllOrders').get(getAllOrders);
 router.route('/change-order-status').post(changeStatusOfOrder);
 router.route('/analytics').get(getTotalEarnings);

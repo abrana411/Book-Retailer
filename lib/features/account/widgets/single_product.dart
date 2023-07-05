@@ -12,8 +12,8 @@ class SingleProduct extends StatelessWidget {
       decoration: BoxDecoration(border: Border.all(color: Colors.black12)),
       child: Image.network(
         imageSrc,
-        fit: BoxFit.fitHeight,
-        // width: 200,
+        fit: BoxFit.fitWidth,
+        width: 200,
       ),
     );
   }
