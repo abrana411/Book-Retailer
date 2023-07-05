@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../../../providers/user_provider.dart';
+import '../../account/services/account_services.dart';
 import '../screens/analytics_screen.dart';
 import '../screens/orders_screen.dart';
 import '../screens/products_screen.dart';
@@ -31,10 +34,42 @@ class _AdminScreenState extends State<AdminScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final pass =
+        Provider.of<UserProvider>(context, listen: false).user.password;
+    final isGoogleSignout = pass.isEmpty;
     return Scaffold(
+      drawer: Drawer(
+          backgroundColor: Colors.white,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              ElevatedButton.icon(
+                  style:
+                      const ButtonStyle(elevation: MaterialStatePropertyAll(0)),
+                  onPressed: () {
+                    AccountServices().logOutUser(context, isGoogleSignout);
+                  },
+                  icon: const Icon(Icons.logout),
+                  label: const Text("Sign out"))
+            ],
+          )),
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(50),
         child: AppBar(
+          leading: Builder(
+            builder: (BuildContext context) {
+              return IconButton(
+                icon: const Icon(
+                  Icons.line_weight_outlined,
+                  color: Colors.white,
+                ),
+                onPressed: () {
+                  Scaffold.of(context).openDrawer();
+                },
+                tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+              );
+            },
+          ),
           // flexibleSpace: Container(
           //   decoration: const BoxDecoration(
           //     gradient: GlobalVariables.appBarGradient,
@@ -45,7 +80,11 @@ class _AdminScreenState extends State<AdminScreen> {
             children: [
               Container(
                 alignment: Alignment.topLeft,
-                child: const Text("Book Retail"),
+                child: (_page == 0)
+                    ? const Text("All Products")
+                    : (_page == 1)
+                        ? const Text("Analytics")
+                        : const Text("All Orders"),
               ),
               const Text(
                 'Admin',
@@ -56,6 +95,16 @@ class _AdminScreenState extends State<AdminScreen> {
               )
             ],
           ),
+          // actions: [
+          //   ElevatedButton.icon(
+          //       style:
+          //           const ButtonStyle(elevation: MaterialStatePropertyAll(0)),
+          //       onPressed: () {
+          //         AccountServices().logOutUser(context, isGoogleSignout);
+          //       },
+          //       icon: const Icon(Icons.logout),
+          //       label: const Text("Sign out"))
+          // ],
         ),
       ),
       body: pages[_page],
