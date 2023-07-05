@@ -264,4 +264,28 @@ class AdminServices {
       'totalEarnings': totalEarning,
     };
   }
+
+  getAnalyticsOfListedProducts({required BuildContext context}) async {
+    final userProvider = Provider.of<UserProvider>(context, listen: false);
+    try {
+      http.Response res = await http.get(
+        Uri.parse('${GlobalVariables.initialUrl}/admin/analytics'),
+        headers: {
+          'Content-Type': 'application/json; charset=UTF-8',
+          'User_token': userProvider.user.token,
+        },
+      );
+
+      if (context.mounted) {
+        httphandleError(
+          response: res,
+          context: context,
+          onSuccess: () {},
+          //Here we will create a list of the Sale for each category we are getting as the response from the API:-
+        );
+      }
+    } catch (error) {
+      ShowSnackBar(context: context, text: error.toString(), color: Colors.red);
+    }
+  }
 }

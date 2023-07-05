@@ -1,6 +1,16 @@
 const orderModel = require("../models/order_model");
 const {productModel} = require("../models/product_model");
 
+const categories = [
+  'Bio Tech',
+  'Civil',
+  'Chemical',
+  'CS & IT',
+  'Electrical',
+  'Electronics',
+  'Mechanical',
+];
+
 //API to add a new product to db:
 const addProductForSale = async (req,res)=>{
     try {
@@ -120,11 +130,56 @@ async function getCategoryWiseEarningsFromOrders(category){
       }
       return catEarnings;
 }
+
+const getApprovedProducts = async (req,res) => {
+  try {
+    const approvedProducts = await productModel.find({approved: true});
+    res.json(approvedProducts);
+  } catch (error) {
+    res.status(500).json({errMsg:`An error has occured with message : ${error}`});
+  }
+}
+
+const getUnapprovedProducts = async (req,res) => {
+  try {
+    const unApprovedProducts = await productModel.find({approved: false});
+    res.json(unApprovedProducts);
+  } catch (error) {
+    res.status(500).json({errMsg:`An error has occured with message : ${error}`});
+  }
+}
+
+const getCategoryWiseListOfListedProducts = async (req,res) => {
+  try {
+    let obj = {};
+    for (let i = 0; i < categories.length; i++) {
+      const category = categories[i];
+      const count = await getListOfProductsByCategory(category);
+      obj[category] = count;
+    }
+    res.json(obj);
+  } catch (error) {
+    res.status(500).json({errMsg:`An error has occured with message : ${error}`});
+  }
+}
+
+async function getListOfProductsByCategory(category) {
+  try {
+    const productList = await productModel.find({category: category});
+    return productList.length;
+  } catch (error) {
+    return 50;
+  }
+}
+
 module.exports = {
   addProductForSale,
   fetchAllProducts,
   deleteProduct,
   getAllOrders,
   changeStatusOfOrder,
-  getTotalEarnings
+  getTotalEarnings,
+  getApprovedProducts,
+  getUnapprovedProducts,
+  getCategoryWiseListOfListedProducts,
 };

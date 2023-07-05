@@ -12,44 +12,60 @@ class AccountScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       //Now we want to adjust the height of the appbar andd in order to do that we can use the preffered size widget and set the height as written below
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(50), //giving the height as 50
-        child: AppBar(
-          elevation: 0,
-          flexibleSpace: Container(
-            decoration: const BoxDecoration(
-              gradient:
-                  GlobalVariables.appBarGradient, //passing the gredient color
+      appBar: AppBar(
+        // elevation: 0,
+        // flexibleSpace: Container(
+        //   decoration: const BoxDecoration(
+        //     gradient: GlobalVariables.appBarGradient,
+        //   ),
+        // ),
+        // title: Row(
+        //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        //   children: [
+        //     Container(
+        //       alignment: Alignment.topLeft,
+        //       child: Image.asset(
+        //         'assets/images/amazon_in.png',
+        //         width: 120,
+        //         height: 45,
+        //         color: Colors.black,
+        //       ),
+        //     ),
+        //     Container(
+        //       padding: const EdgeInsets.only(left: 15, right: 15),
+        //       child: const Row(
+        //         children: [
+        //           Padding(
+        //             padding: EdgeInsets.only(right: 15),
+        //             child: Icon(Icons.notifications_outlined),
+        //           ),
+        //           Icon(
+        //             Icons.search,
+        //           ),
+        //         ],
+        //       ),
+        //     )
+        //   ],
+        // ),
+        title: Stack(
+          children: [
+            Container(
+              alignment: Alignment.bottomCenter,
+              child: Text('Account'),
             ),
-          ),
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Container(
-                alignment: Alignment.topLeft,
-                child: Image.asset(
-                  'assets/images/amazon_in.png',
-                  width: 120,
-                  height: 45,
-                  color: Colors.black,
-                ),
-              ),
-              Container(
-                padding: const EdgeInsets.only(left: 15, right: 15),
-                child: const Row(
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.only(right: 15),
-                      child: Icon(Icons.notifications_outlined),
-                    ),
-                    Icon(
-                      Icons.search,
-                    ),
-                  ],
-                ),
-              )
-            ],
-          ),
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.logout_outlined),
+            ),
+            // Positioned(
+            //   left: 5,
+            //   top: 0,
+            //   child: IconButton(
+            //     onPressed: () {},
+            //     icon: const Icon(Icons.logout_outlined),
+            //   ),
+            // ),
+          ],
         ),
       ),
       body: const Column(
@@ -65,6 +81,11 @@ class AccountScreen extends StatelessWidget {
           ),
           UserOrders(),
         ],
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {},
+        icon: const Icon(Icons.sell),
+        label: const Text('Sell Products'),
       ),
     );
   }

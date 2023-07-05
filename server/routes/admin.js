@@ -5,15 +5,20 @@ const {
     deleteProduct,
     getAllOrders,
     changeStatusOfOrder,
-    getTotalEarnings
+    getTotalEarnings,
+    getApprovedProducts,
+    getUnapprovedProducts,
+    getCategoryWiseListOfListedProducts,
 } = require('../controllers/admin');
 
 const router = express.Router();
 
 router.route('/add-product-to-sell').post(addProductForSale);
 router.route('/').get(fetchAllProducts).delete(deleteProduct);
+router.route('/approvedProducts').get(getApprovedProducts);
+router.route('/unApprovedProducts').get(getUnapprovedProducts);
 router.route('/getAllOrders').get(getAllOrders);
 router.route('/change-order-status').post(changeStatusOfOrder);
-router.route('/analytics').get(getTotalEarnings);
+router.route('/analytics').get(getCategoryWiseListOfListedProducts);
 
 module.exports = router;

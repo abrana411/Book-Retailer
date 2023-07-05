@@ -1,3 +1,4 @@
+import 'package:a_to_z_shop/features/account/screens/sell_products_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -8,6 +9,9 @@ import 'constants/global_variables.dart';
 import 'features/admin/screens/admin_screen.dart';
 import 'common/widgets/bottom_nav_bar.dart';
 import 'features/auth/services/auth_services.dart';
+
+import 'features/address/screens/address_screen.dart';
+import 'features/account/screens/account_screen.dart';
 
 void main() {
   runApp(MultiProvider(providers: [
@@ -72,7 +76,7 @@ class _MyAppState extends State<MyApp> {
               ? const AdminScreen() //If the user type is not 'user' then it means it is the admin and we will display the admin screen then, else the actual home ie the bottom nav screen with home seleceted by default
               : const BottomNavBar()
           : const AuthScreen(),
-      // home: const AdminScreen(),
+      // home: const AccountScreen(),
     );
   }
 }

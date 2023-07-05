@@ -35,6 +35,10 @@ const productSchema = new mongoose.Schema({
         type: String,
         required: true,
       },
+      approved: {
+        type: Boolean,
+        default: false,
+      },
       //Rating array consisting of the rating schema as an element
       ratings:[ratingSchema],
 });

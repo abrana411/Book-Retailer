@@ -33,23 +33,31 @@ class GlobalVariables {
   //Category images below (with title too):-
   static const List<Map<String, String>> categoryImages = [
     {
-      'title': 'Mobiles',
+      'title': 'Bio Tech',
       'image': 'assets/images/mobiles.jpeg',
     },
     {
-      'title': 'Essentials',
+      'title': 'Civil',
       'image': 'assets/images/essentials.jpeg',
     },
     {
-      'title': 'Appliances',
+      'title': 'Chemical',
       'image': 'assets/images/appliances.jpeg',
     },
     {
-      'title': 'Books',
+      'title': 'CS & IT',
       'image': 'assets/images/books.jpeg',
     },
     {
-      'title': 'Fashion',
+      'title': 'Electrical',
+      'image': 'assets/images/fashion.jpeg',
+    },
+    {
+      'title': 'Electronics',
+      'image': 'assets/images/fashion.jpeg',
+    },
+    {
+      'title': 'Mechanical',
       'image': 'assets/images/fashion.jpeg',
     },
   ];
