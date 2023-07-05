@@ -63,11 +63,12 @@ class AccountServices {
     List<Product> listedProducts = [];
     try {
       http.Response res = await http.get(
-          Uri.parse('${GlobalVariables.initialUrl}/api/getListedProducts'),
-          headers: {
-            'Content-Type': 'application/json; charset=UTF-8',
-            'User_token': userProvider.user.token,
-          });
+        Uri.parse('${GlobalVariables.initialUrl}/api/getListedProducts'),
+        headers: {
+          'Content-Type': 'application/json; charset=UTF-8',
+          'User_token': userProvider.user.token,
+        },
+      );
 
       if (context.mounted) {
         httphandleError(
@@ -153,11 +154,44 @@ class AccountServices {
     }
   }
 
+  Future<bool> deleteProduct({
+    required BuildContext context,
+    required String productId,
+  }) async {
+    try {
+      final userProvider = Provider.of<UserProvider>(context, listen: false);
+      var res = await http.delete(
+        Uri.parse('${GlobalVariables.initialUrl}/api/$productId'),
+        headers: {
+          'Content-Type': 'application/json; charset=UTF-8',
+          'User_token': userProvider.user.token,
+        },
+      );
+
+      if (context.mounted) {
+        httphandleError(
+          response: res,
+          context: context,
+          onSuccess: () {
+            ShowSnackBar(
+                context: context,
+                text: "Product deleted successfully!!",
+                color: Colors.green);
+          },
+        );
+      }
+    } catch (error) {
+      ShowSnackBar(context: context, text: error.toString(), color: Colors.red);
+      return false;
+    }
+    return true;
+  }
+
   //Function to log out the user:
   void logOutUser(BuildContext context, bool isGoogleSignOut) async {
     try {
       if (isGoogleSignOut) {
-        print("arre bhai sab");
+        // print("arre bhai sab");
         await GoogleSignIn().signOut();
       }
 
@@ -167,7 +201,10 @@ class AccountServices {
       if (context.mounted) {
         //Push to the authscreen after removing the token
         Navigator.pushNamedAndRemoveUntil(
-            context, AuthScreen.routeName, (route) => false);
+          context,
+          AuthScreen.routeName,
+          (route) => false,
+        );
       }
     } catch (error) {
       ShowSnackBar(context: context, text: error.toString(), color: Colors.red);

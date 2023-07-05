@@ -1,5 +1,16 @@
 const {productModel} = require('../models/product_model');
 
+
+//API to fetch all the products:-
+const fetchAllProducts = async(req,res)=>{
+  try {
+    const prods = await productModel.find({});//nothing is given so find all
+    res.json(prods);
+  } catch (error) {
+    res.status(500).json({errMsg:`An error has occured with message : ${error}`});
+  }
+};
+
 // Api for fetching the products of a certain category:
 const FilterProductByCategory = async (req,res)=>{
     try {
@@ -12,7 +23,7 @@ const FilterProductByCategory = async (req,res)=>{
 };
 
 //Api for getting the matched product named from the search paramtere passed in the url itself, so we will be using :/searched here
-const getSerachItems = async(req,res)=>{
+const getSearchItems = async(req,res)=>{
   try {
     const {searched} = req.params;
     const prods = await productModel.find({name:{$regex:searched,$options:'i'}});//Using query operator here , ie if the searched thing matched with any name(even if searched is a substring of any name , whole thing is not necessary to match here with this approach) , (also the searched if in uppercase will get converted to lower case for searching because of the oprions='i' , can read more about these in the store api project) 
@@ -110,8 +121,9 @@ const listProduct = async (req,res) => {
 
 module.exports = {
   FilterProductByCategory,
-  getSerachItems,
+  getSearchItems,
   rateAProduct,
   getBestDeal,
   listProduct,
+  fetchAllProducts,
 };

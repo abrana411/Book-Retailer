@@ -17,9 +17,11 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
   int? totalEarnings = 0;
   List<BarChartGroupData>? catEarnings;
   // List<String>? titles;
+  Map<dynamic, dynamic> obj = {};
 
   void getAnalyticsOfListedProducts() async {
-    await adminServices.getAnalyticsOfListedProducts(context: context);
+    obj = await adminServices.getAnalyticsOfListedProducts(context: context);
+    setState(() {});
   }
 
   @override
@@ -111,9 +113,7 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
     //       );
 
     return Scaffold(
-      body: Container(
-        child: Text('Hello'),
-      ),
+      body: Text('Bio Tech' + obj['Bio Tech'].toString()),
     );
   }
 }

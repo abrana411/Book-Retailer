@@ -1,11 +1,10 @@
 const express =require('express');
 const {
-    addProductForSale,
-    fetchAllProducts,
     deleteProduct,
     getAllOrders,
     changeStatusOfOrder,
     getTotalEarnings,
+    fetchAllProducts,
     getApprovedProducts,
     getUnapprovedProducts,
     getCategoryWiseListOfListedProducts,
@@ -13,7 +12,6 @@ const {
 
 const router = express.Router();
 
-router.route('/add-product-to-sell').post(addProductForSale);
 router.route('/').get(fetchAllProducts).delete(deleteProduct);
 router.route('/approvedProducts').get(getApprovedProducts);
 router.route('/unApprovedProducts').get(getUnapprovedProducts);

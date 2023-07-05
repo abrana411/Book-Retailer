@@ -80,7 +80,7 @@ class AdminServices {
     List<Product> prods = [];
     try {
       var response = await http.get(
-        Uri.parse("${GlobalVariables.initialUrl}/admin/"),
+        Uri.parse("${GlobalVariables.initialUrl}/api/getAll"),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
           'User_token': currUser.user.token,
@@ -265,7 +265,10 @@ class AdminServices {
     };
   }
 
-  getAnalyticsOfListedProducts({required BuildContext context}) async {
+  Future<Map<dynamic, dynamic>> getAnalyticsOfListedProducts({
+    required BuildContext context,
+  }) async {
+    var obj = {};
     final userProvider = Provider.of<UserProvider>(context, listen: false);
     try {
       http.Response res = await http.get(
@@ -280,12 +283,13 @@ class AdminServices {
         httphandleError(
           response: res,
           context: context,
-          onSuccess: () {},
+          onSuccess: () => obj = jsonDecode(res.body),
           //Here we will create a list of the Sale for each category we are getting as the response from the API:-
         );
       }
     } catch (error) {
       ShowSnackBar(context: context, text: error.toString(), color: Colors.red);
     }
+    return obj;
   }
 }

@@ -14,19 +14,19 @@ class BelowAppBarInAccount extends StatelessWidget {
     return Container(
       width: MediaQuery.of(context).size.width,
       padding: const EdgeInsets.only(left: 12, right: 12, top: 10, bottom: 5),
-      decoration: const BoxDecoration(gradient: GlobalVariables.appBarGradient),
+      decoration: const BoxDecoration(color: GlobalVariables.secondaryColor),
       child: RichText(
         text: TextSpan(
-            text: "Welcome , ",
+            text: "Welcome ,   ",
             style: const TextStyle(
-                fontWeight: FontWeight.w500, color: Colors.black, fontSize: 15),
+                fontWeight: FontWeight.w600, color: Colors.white, fontSize: 12),
             children: [
               TextSpan(
                 text: currentUser.name, //name of the current user
                 style: const TextStyle(
                     fontWeight: FontWeight.w800,
-                    color: Color.fromARGB(255, 168, 163, 163),
-                    fontSize: 25),
+                    color: Colors.black,
+                    fontSize: 20),
               )
             ]),
       ),

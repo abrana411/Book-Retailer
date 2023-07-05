@@ -1,10 +1,11 @@
+import 'package:a_to_z_shop/features/home/widgets/popular_prod_grid.dart';
 import 'package:flutter/material.dart';
 
 import '../services/admin_services.dart';
 import '../../../models/product_model.dart';
-import '../../account/widgets/single_product.dart';
+// import '../../account/widgets/single_product.dart';
 import '../../../constants/screen_loader.dart';
-import '../../account/screens/add_products_screen.dart';
+// import '../../account/screens/add_products_screen.dart';
 
 class ProdsScreen extends StatefulWidget {
   const ProdsScreen({super.key});
@@ -45,57 +46,61 @@ class _ProdsScreenState extends State<ProdsScreen> {
     return allProducts == null
         ? const ScreenLoader()
         : Scaffold(
-            body: GridView.builder(
-                itemCount: allProducts!.length,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2),
-                itemBuilder: (context, index) {
-                  Product currProduct = allProducts![index];
-                  return Column(
-                    children: [
-                      SizedBox(
-                        height: 150,
-                        child: SingleProduct(
-                            imageSrc: currProduct.images[
-                                0]), //only the 0th image (as all the details of products are not shown here just a single image is shown)
-                      ),
-                      Row(
-                        children: [
-                          const SizedBox(
-                            width: 20,
-                          ),
-                          Expanded(
-                            child: Text(
-                              currProduct.name,
-                              style: const TextStyle(
-                                  fontWeight: FontWeight.w500, fontSize: 15),
-                              maxLines: 3,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ),
-                          IconButton(
-                            onPressed: () => deleteProduct(currProduct, index),
-                            icon: const Icon(
-                              Icons.delete,
-                              color: Colors.red,
-                            ),
-                          ),
-                        ],
-                      )
-                    ],
-                  );
-                }),
-            floatingActionButton: FloatingActionButton(
-              onPressed: () {
-                Navigator.pushNamed(context, AddProductScreen.routeName);
-                //not creating a seperate function for this as this is a single line
-              },
-              tooltip:
-                  "Add a new Product", //when the user taps on this button then this will show
-              child: const Icon(Icons.add),
-            ),
-            floatingActionButtonLocation:
-                FloatingActionButtonLocation.centerFloat,
+            // body: GridView.builder(
+            //     itemCount: allProducts!.length,
+            //     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            //         crossAxisCount: 2),
+            //     itemBuilder: (context, index) {
+            //       Product currProduct = allProducts![index];
+            //       return Column(
+            //         children: [
+            //           SizedBox(
+            //             height: 150,
+            //             child: SingleProduct(
+            //                 imageSrc: currProduct.images[
+            //                     0]), //only the 0th image (as all the details of products are not shown here just a single image is shown)
+            //           ),
+            //           Row(
+            //             children: [
+            //               const SizedBox(
+            //                 width: 20,
+            //               ),
+            //               Expanded(
+            //                 child: Text(
+            //                   currProduct.name,
+            //                   style: const TextStyle(
+            //                       fontWeight: FontWeight.w500, fontSize: 15),
+            //                   maxLines: 3,
+            //                   overflow: TextOverflow.ellipsis,
+            //                 ),
+            //               ),
+            //               IconButton(
+            //                 onPressed: () => deleteProduct(currProduct, index),
+            //                 icon: const Icon(
+            //                   Icons.delete,
+            //                   color: Colors.red,
+            //                 ),
+            //               ),
+            //             ],
+            //           )
+            //         ],
+            //       );
+            //     }),
+            // floatingActionButton: FloatingActionButton(
+            //   onPressed: () {
+            //     Navigator.pushNamed(context, AddProductScreen.routeName);
+            //     //not creating a seperate function for this as this is a single line
+            //   },
+            //   tooltip:
+            //       "Add a new Product", //when the user taps on this button then this will show
+            //   child: const Icon(Icons.add),
+            // ),
+            // floatingActionButtonLocation:
+            //     FloatingActionButtonLocation.centerFloat,
+            body: PopularProducts(
+                products: allProducts,
+                isDelete: true,
+                func: (Product prod, int index) => deleteProduct(prod, index)),
           );
   }
 }

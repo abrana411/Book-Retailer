@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
-import '../screens/category_screen.dart';
+// import '../screens/category_screen.dart';
 import '../../../constants/global_variables.dart';
+import '../screens/category_screen.dart';
 
 class FamCategories extends StatelessWidget {
   const FamCategories({super.key});
 
-  //Function to navigate to a seperate category page:-
+  // Function to navigate to a seperate category page:-
   void navigateToCatScreen(BuildContext context, String category) {
     Navigator.pushNamed(context, SingleCategoryScreen.routeName,
         arguments: category); //this is how we can pass in the srgument

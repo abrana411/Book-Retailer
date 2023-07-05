@@ -12,27 +12,27 @@ const categories = [
 ];
 
 //API to add a new product to db:
-const addProductForSale = async (req,res)=>{
-    try {
-        //these names should be matching with the ones in the model of the product in the client side because we are directly adding these same name to the mongo
-        const { name, description, images, quantity, price, category } = req.body;
-        //just like we created a user simply create an instance of the product model and save it using the .save() to the mongo db and then return it to the client side
-        let newProd = new productModel({
-            name,
-            description,
-            images,
-            quantity,
-            price,
-            category,
-        });
-        newProd = await newProd.save();
-        res.json(newProd);
-    } catch (error) {
-        res.status(500).json({errMsg:`An error has occured with message : ${error}`});
-    }
-};
+// const addProductForSale = async (req,res)=>{
+//     try {
+//         //these names should be matching with the ones in the model of the product in the client side because we are directly adding these same name to the mongo
+//         const { name, description, images, quantity, price, category } = req.body;
+//         //just like we created a user simply create an instance of the product model and save it using the .save() to the mongo db and then return it to the client side
+//         let newProd = new productModel({
+//             name,
+//             description,
+//             images,
+//             quantity,
+//             price,
+//             category,
+//         });
+//         newProd = await newProd.save();
+//         res.json(newProd);
+//     } catch (error) {
+//         res.status(500).json({errMsg:`An error has occured with message : ${error}`});
+//     }
+// };
 
-//API to fetch all the products:-
+// //API to fetch all the products:-
 const fetchAllProducts = async(req,res)=>{
   try {
     const prods = await productModel.find({});//nothing is given so find all
@@ -173,12 +173,11 @@ async function getListOfProductsByCategory(category) {
 }
 
 module.exports = {
-  addProductForSale,
-  fetchAllProducts,
   deleteProduct,
   getAllOrders,
   changeStatusOfOrder,
   getTotalEarnings,
+  fetchAllProducts,
   getApprovedProducts,
   getUnapprovedProducts,
   getCategoryWiseListOfListedProducts,

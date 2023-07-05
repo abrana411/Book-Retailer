@@ -27,7 +27,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
   GlobalKey<FormState> _addNewProdFormKey = GlobalKey<FormState>();
 
   //The initial value of the dropDown (for categories):-
-  String currCategory = "Bio Technology";
+  String currCategory = "Bio Tech";
 
   //All images seleceted by the admin
   List<File> selectedImages = [];

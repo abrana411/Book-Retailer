@@ -1,4 +1,3 @@
-import 'package:a_to_z_shop/features/account/screens/sell_products_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -9,9 +8,6 @@ import 'constants/global_variables.dart';
 import 'features/admin/screens/admin_screen.dart';
 import 'common/widgets/bottom_nav_bar.dart';
 import 'features/auth/services/auth_services.dart';
-
-import 'features/address/screens/address_screen.dart';
-import 'features/account/screens/account_screen.dart';
 
 void main() {
   runApp(MultiProvider(providers: [
