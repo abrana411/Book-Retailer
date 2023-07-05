@@ -5,7 +5,7 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
 import '../services/account_services.dart';
-import '../../../constants/global_variables.dart';
+// import '../../../constants/global_variables.dart';
 import '../../../constants/other_utils.dart';
 import '../../../common/widgets/custom_button.dart';
 import '../../../common/widgets/custom_textformfield.dart';
@@ -27,7 +27,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
   GlobalKey<FormState> _addNewProdFormKey = GlobalKey<FormState>();
 
   //The initial value of the dropDown (for categories):-
-  String currCategory = "Fashion";
+  String currCategory = "Bio Tech";
 
   //All images seleceted by the admin
   List<File> selectedImages = [];
@@ -44,11 +44,13 @@ class _AddProductScreenState extends State<AddProductScreen> {
 
   //All the categories list:-
   List<String> allCategories = [
-    'Mobiles',
-    'Essentials',
-    'Appliances',
-    'Books',
-    'Fashion',
+    'Bio Tech',
+    'Civil',
+    'Chemical',
+    'CS & IT',
+    'Electrical',
+    'Electronics',
+    'Mechanical',
   ];
 
   //Function to select the images:-
@@ -83,33 +85,12 @@ class _AddProductScreenState extends State<AddProductScreen> {
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(50),
         child: AppBar(
-          flexibleSpace: Container(
-            decoration: const BoxDecoration(
-              gradient: GlobalVariables.appBarGradient,
-            ),
-          ),
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Container(
-                alignment: Alignment.topLeft,
-                child: Image.asset(
-                  'assets/images/amazon_in.png',
-                  width: 120,
-                  height: 45,
-                  color: Colors.black,
-                ),
-              ),
-              const Text(
-                'Admin',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                ),
-              )
-            ],
-          ),
-        ),
+            // flexibleSpace: Container(
+            //   decoration: const BoxDecoration(
+            //     gradient: GlobalVariables.appBarGradient,
+            //   ),
+            // ),
+            title: const Text("Add Product")),
       ),
       body: SingleChildScrollView(
         child: Form(

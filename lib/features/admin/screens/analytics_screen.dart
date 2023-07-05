@@ -3,7 +3,7 @@ import 'package:fl_chart/fl_chart.dart';
 
 import '../models/sale_model.dart';
 import '../services/admin_services.dart';
-import '../../../constants/screen_loader.dart';
+// import '../../../constants/screen_loader.dart';
 
 class AnalyticsScreen extends StatefulWidget {
   const AnalyticsScreen({super.key});
@@ -17,10 +17,18 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
   int? totalEarnings = 0;
   List<BarChartGroupData>? catEarnings;
   // List<String>? titles;
+  Map<dynamic, dynamic> obj = {};
+
+  void getAnalyticsOfListedProducts() async {
+    obj = await adminServices.getAnalyticsOfListedProducts(context: context);
+    setState(() {});
+  }
+
   @override
   void initState() {
+    getAnalyticsOfListedProducts();
     super.initState();
-    getTheAnalyticsData();
+    // getTheAnalyticsData();
   }
 
   //getter(needed a getter only) to get title corresponding to x axis int value:-
@@ -74,34 +82,38 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return (catEarnings == null || totalEarnings == null)
-        ? const ScreenLoader()
-        : Container(
-            margin: const EdgeInsets.only(top: 50),
-            padding: const EdgeInsets.all(20),
-            height: 300,
-            child: BarChart(BarChartData(
-                gridData: FlGridData(show: false),
-                borderData: FlBorderData(
-                  border: const Border(
-                    top: BorderSide.none,
-                    right: BorderSide.none,
-                    left: BorderSide(width: 1),
-                    bottom: BorderSide(width: 1),
-                  ),
-                ),
-                groupsSpace: 10,
-                titlesData: FlTitlesData(
-                  bottomTitles: AxisTitles(sideTitles: _bottomTitles),
-                  leftTitles:
-                      AxisTitles(sideTitles: SideTitles(showTitles: false)),
-                  topTitles:
-                      AxisTitles(sideTitles: SideTitles(showTitles: false)),
-                  rightTitles:
-                      AxisTitles(sideTitles: SideTitles(showTitles: false)),
-                ),
-                // add bars
-                barGroups: catEarnings)),
-          );
+    // return (catEarnings == null || totalEarnings == null)
+    //     ? const ScreenLoader()
+    //     : Container(
+    //         margin: const EdgeInsets.only(top: 50),
+    //         padding: const EdgeInsets.all(20),
+    //         height: 300,
+    //         child: BarChart(BarChartData(
+    //             gridData: FlGridData(show: false),
+    //             borderData: FlBorderData(
+    //               border: const Border(
+    //                 top: BorderSide.none,
+    //                 right: BorderSide.none,
+    //                 left: BorderSide(width: 1),
+    //                 bottom: BorderSide(width: 1),
+    //               ),
+    //             ),
+    //             groupsSpace: 10,
+    //             titlesData: FlTitlesData(
+    //               bottomTitles: AxisTitles(sideTitles: _bottomTitles),
+    //               leftTitles:
+    //                   AxisTitles(sideTitles: SideTitles(showTitles: false)),
+    //               topTitles:
+    //                   AxisTitles(sideTitles: SideTitles(showTitles: false)),
+    //               rightTitles:
+    //                   AxisTitles(sideTitles: SideTitles(showTitles: false)),
+    //             ),
+    //             // add bars
+    //             barGroups: catEarnings)),
+    //       );
+
+    return Scaffold(
+      body: Text('Bio Tech' + obj['Bio Tech'].toString()),
+    );
   }
 }

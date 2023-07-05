@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:pay/pay.dart';
+// import 'package:pay/pay.dart';
 import 'package:provider/provider.dart';
 
+import '../widgets/razorpay_button.dart';
 import '../services/address_services.dart';
 import '../../../providers/user_provider.dart';
 import '../../../constants/show_snack_bar.dart';
@@ -24,9 +25,9 @@ class _AddressScreenState extends State<AddressScreen> {
   TextEditingController pinCodeController = TextEditingController();
   TextEditingController userCityController = TextEditingController();
   final _AddressFormKey = GlobalKey<FormState>();
-  final Future<PaymentConfiguration> _googlePayConfigFuture =
-      PaymentConfiguration.fromAsset('gpay.json');
-  final List<PaymentItem> _paymentItems = [];
+  // final Future<PaymentConfiguration> _googlePayConfigFuture =
+  //     PaymentConfiguration.fromAsset('gpay.json');
+  // final List<PaymentItem> _paymentItems = [];
 
   //Address to use:-
   String addressToUse = "";
@@ -34,12 +35,12 @@ class _AddressScreenState extends State<AddressScreen> {
   @override
   void initState() {
     super.initState();
-    _paymentItems.add(
-      PaymentItem(
-          amount: widget.totalAmountToPay,
-          label: "Total Amount",
-          status: PaymentItemStatus.final_price),
-    );
+    // _paymentItems.add(
+    //   PaymentItem(
+    //       amount: widget.totalAmountToPay,
+    //       label: "Total Amount",
+    //       status: PaymentItemStatus.final_price),
+    // );
   }
 
   //Disposing the controllers:-
@@ -67,8 +68,8 @@ class _AddressScreenState extends State<AddressScreen> {
         //then giving the new error by concatenating all the fields
         addressToUse =
             '${flatBuildingController.text}, ${areaController.text}, ${userCityController.text} - ${pinCodeController.text}';
-        onGooglePayResult(
-            ""); //for testing here since we can tuse gpay without actual gpay account and card
+        // onGooglePayResult(
+        //     ""); //for testing here since we can tuse gpay without actual gpay account and card
         throw Exception("Enter all values of the fields");
       } else {
         throw Exception("Enter all values of the fields");
@@ -79,7 +80,7 @@ class _AddressScreenState extends State<AddressScreen> {
         //then we will use this
         addressToUse = userCurrentAddress;
         //Below for testing
-        onGooglePayResult("");
+        // onGooglePayResult("");
         throw Exception("Enter all values of the fields");
       } else {
         //Show an error:-
@@ -90,20 +91,20 @@ class _AddressScreenState extends State<AddressScreen> {
   }
 
   //After paying when we got the result:- (Then we have to create API to update myOrders) (Below function will run only when the payment was successfull)
-  void onGooglePayResult(res) {
-    if (Provider.of<UserProvider>(context, listen: false)
-        .user
-        .address
-        .isEmpty) {
-      addressServices.addUserAddress(
-          context: context, addressToAdd: addressToUse);
-    }
+  // void onGooglePayResult(res) {
+  //   if (Provider.of<UserProvider>(context, listen: false)
+  //       .user
+  //       .address
+  //       .isEmpty) {
+  //     addressServices.addUserAddress(
+  //         context: context, addressToAdd: addressToUse);
+  //   }
 
-    addressServices.PlaceanOrder(
-        context: context,
-        addressToAdd: addressToUse,
-        totalPrice: double.parse(widget.totalAmountToPay));
-  }
+  //   addressServices.PlaceanOrder(
+  //       context: context,
+  //       addressToAdd: addressToUse,
+  //       totalPrice: double.parse(widget.totalAmountToPay));
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -197,24 +198,25 @@ class _AddressScreenState extends State<AddressScreen> {
                 ),
               ),
             ),
+            RazorpayButton(totalAmount: int.parse(widget.totalAmountToPay)),
 
-            FutureBuilder<PaymentConfiguration>(
-                future: _googlePayConfigFuture,
-                builder: (context, snapshot) => snapshot.hasData
-                    ? GooglePayButton(
-                        onPressed: () {
-                          whichAddressToUse(currUser.address);
-                        },
-                        paymentConfiguration: snapshot.data!,
-                        paymentItems: _paymentItems,
-                        type: GooglePayButtonType.buy,
-                        margin: const EdgeInsets.only(top: 15.0),
-                        onPaymentResult: onGooglePayResult,
-                        loadingIndicator: const Center(
-                          child: CircularProgressIndicator(),
-                        ),
-                      )
-                    : const SizedBox.shrink()),
+            // FutureBuilder<PaymentConfiguration>(
+            //     future: _googlePayConfigFuture,
+            //     builder: (context, snapshot) => snapshot.hasData
+            //         ? GooglePayButton(
+            //             onPressed: () {
+            //               whichAddressToUse(currUser.address);
+            //             },
+            //             paymentConfiguration: snapshot.data!,
+            //             paymentItems: _paymentItems,
+            //             type: GooglePayButtonType.buy,
+            //             margin: const EdgeInsets.only(top: 15.0),
+            //             onPaymentResult: onGooglePayResult,
+            //             loadingIndicator: const Center(
+            //               child: CircularProgressIndicator(),
+            //             ),
+            //           )
+            //         : const SizedBox.shrink()),
           ]),
         ),
       ),

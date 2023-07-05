@@ -7,7 +7,7 @@ import 'package:a_to_z_shop/constants/screen_loader.dart';
 import 'package:a_to_z_shop/models/product_model.dart';
 import 'package:flutter/material.dart';
 
-import '../../../common/widgets/custom_button.dart';
+// import '../../../common/widgets/custom_button.dart';
 
 class SellProductsScreen extends StatefulWidget {
   static const String routeName = "/sell-products";
@@ -172,6 +172,27 @@ class _SellProductsScreenState extends State<SellProductsScreen> {
                                               maxLines: 2,
                                             ),
                                           ),
+
+                                          Container(
+                                              width: 225,
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 10),
+                                              child: (currProduct.approved!)
+                                                  ? const Text(
+                                                      "Approved",
+                                                      style: TextStyle(
+                                                          fontSize: 16,
+                                                          color: Colors.blue),
+                                                      maxLines: 2,
+                                                    )
+                                                  : const Text(
+                                                      "Approval Pending",
+                                                      style: TextStyle(
+                                                          fontSize: 16,
+                                                          color: Colors.red),
+                                                      maxLines: 2,
+                                                    )),
                                           const SizedBox(
                                             height: 20,
                                           ),
@@ -198,11 +219,23 @@ class _SellProductsScreenState extends State<SellProductsScreen> {
                                                 0.3,
                                             padding: const EdgeInsets.only(
                                                 left: 10, top: 5),
-                                            child: CustomButton(
-                                              toShow: "Delete",
-                                              onTap: () {},
-                                              btnColor: Colors.red,
-                                            ),
+                                            child: ElevatedButton.icon(
+                                                style: ElevatedButton.styleFrom(
+                                                    backgroundColor:
+                                                        Colors.red),
+                                                onPressed: () => accountServices
+                                                    .deleteProduct(
+                                                        context: context,
+                                                        productId:
+                                                            currProduct.id!,
+                                                        func: () {
+                                                          //For dynamic updation of UI
+                                                          userListedProducts!
+                                                              .removeAt(index);
+                                                          setState(() {});
+                                                        }),
+                                                icon: const Icon(Icons.delete),
+                                                label: const Text("Delete")),
                                           ),
                                           // ],
                                           // )

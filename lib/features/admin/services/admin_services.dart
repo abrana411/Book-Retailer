@@ -264,4 +264,106 @@ class AdminServices {
       'totalEarnings': totalEarning,
     };
   }
+
+  Future<Map<dynamic, dynamic>> getAnalyticsOfListedProducts({
+    required BuildContext context,
+  }) async {
+    var obj = {};
+    final userProvider = Provider.of<UserProvider>(context, listen: false);
+    try {
+      http.Response res = await http.get(
+        Uri.parse('${GlobalVariables.initialUrl}/admin/analytics'),
+        headers: {
+          'Content-Type': 'application/json; charset=UTF-8',
+          'User_token': userProvider.user.token,
+        },
+      );
+
+      if (context.mounted) {
+        httphandleError(
+          response: res,
+          context: context,
+          onSuccess: () => obj = jsonDecode(res.body),
+          //Here we will create a list of the Sale for each category we are getting as the response from the API:-
+        );
+      }
+    } catch (error) {
+      ShowSnackBar(context: context, text: error.toString(), color: Colors.red);
+    }
+    return obj;
+  }
+
+  Future<List<Product>> getApprovedProds(BuildContext context) async {
+    final currUser = Provider.of<UserProvider>(context, listen: false);
+    List<Product> prods = [];
+    try {
+      var response = await http.get(
+        Uri.parse("${GlobalVariables.initialUrl}/admin/approvedProducts"),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+          'User_token': currUser.user.token,
+        },
+      );
+
+      if (context.mounted) {
+        httphandleError(
+          response: response,
+          context: context,
+          onSuccess: () {
+            //if no error is there
+            for (int i = 0; i < json.decode(response.body).length; i++) {
+              //above json.decode or jsonDecode(both are same) will convert the json string which we are getting from the api to a iterable and from ith index we can get the product, but to convert the product into a Product instance we have to use fromjson() which takes a json string so , we again have to use the json.encode() at the outer side
+              prods.add(
+                Product.fromJson(
+                  jsonEncode(
+                    jsonDecode(response.body)[i],
+                  ),
+                ),
+              );
+            }
+          },
+        );
+      }
+    } catch (error) {
+      ShowSnackBar(context: context, text: error.toString(), color: Colors.red);
+    }
+    return prods;
+  }
+
+  Future<List<Product>> getUnapprovedProds(BuildContext context) async {
+    final currUser = Provider.of<UserProvider>(context, listen: false);
+    List<Product> prods = [];
+    try {
+      var response = await http.get(
+        Uri.parse("${GlobalVariables.initialUrl}/admin/unApprovedProducts"),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+          'User_token': currUser.user.token,
+        },
+      );
+
+      if (context.mounted) {
+        httphandleError(
+          response: response,
+          context: context,
+          onSuccess: () {
+            //if no error is there
+            for (int i = 0; i < json.decode(response.body).length; i++) {
+              //above json.decode or jsonDecode(both are same) will convert the json string which we are getting from the api to a iterable and from ith index we can get the product, but to convert the product into a Product instance we have to use fromjson() which takes a json string so , we again have to use the json.encode() at the outer side
+              prods.add(
+                Product.fromJson(
+                  jsonEncode(
+                    jsonDecode(response.body)[i],
+                  ),
+                ),
+              );
+            }
+          },
+        );
+      }
+    } catch (error) {
+      ShowSnackBar(context: context, text: error.toString(), color: Colors.red);
+    }
+    return prods;
+  }
 }

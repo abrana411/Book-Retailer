@@ -1,3 +1,6 @@
+import 'package:a_to_z_shop/features/admin/screens/admin_screen.dart';
+import 'package:a_to_z_shop/features/auth/screens/login_screen.dart';
+import 'package:a_to_z_shop/features/auth/screens/signup_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'models/order_model.dart';
@@ -82,6 +85,18 @@ Route<dynamic> getRoute(RouteSettings routeSettings) {
         builder: (_) => OrderDetailsScreen(
           currOrder: routeSettings.arguments as Order,
         ),
+      );
+    case LogInScreen.routeName:
+      return MaterialPageRoute(
+        builder: (_) => const LogInScreen(),
+      );
+    case SignUpScreen.routeName:
+      return MaterialPageRoute(
+        builder: (_) => const SignUpScreen(),
+      );
+    case AdminScreen.routeName:
+      return MaterialPageRoute(
+        builder: (_) => const AdminScreen(),
       );
     default:
       return MaterialPageRoute(

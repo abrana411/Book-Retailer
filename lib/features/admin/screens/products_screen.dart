@@ -18,6 +18,8 @@ class _ProdsScreenState extends State<ProdsScreen> {
   AdminServices adminServices = AdminServices();
   List<Product>?
       allProducts; //here not doing [] initially and for loading not checking if the allProducts list is empty or not , because initially for the very first time when the admin logs in then this list will be empty too even afetr fetching , so that why this will be null initially so using ? for that purpose , for stating that this can be null too
+  List<Product>? unapproved;
+  List<Product>? approved;
   @override
   void initState() {
     super.initState();
@@ -27,6 +29,12 @@ class _ProdsScreenState extends State<ProdsScreen> {
   //Function to invoke the get products :-
   void getTheProds() async {
     allProducts = await adminServices.getAllProds(context);
+    if (context.mounted) {
+      unapproved = await adminServices.getUnapprovedProds(context);
+    }
+    if (context.mounted) {
+      approved = await adminServices.getApprovedProds(context);
+    }
     setState(() {});
   }
 
@@ -97,10 +105,50 @@ class _ProdsScreenState extends State<ProdsScreen> {
             // ),
             // floatingActionButtonLocation:
             //     FloatingActionButtonLocation.centerFloat,
-            body: PopularProducts(
-                products: allProducts,
-                isDelete: true,
-                func: (Product prod, int index) => deleteProduct(prod, index)),
+            body: Column(
+              children: [
+                Container(
+                    margin:
+                        const EdgeInsets.only(left: 20, top: 10, bottom: 10),
+                    alignment: Alignment.centerLeft,
+                    child: const Text(
+                      "Pending",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    )),
+                const SizedBox(
+                  height: 15,
+                ),
+                Expanded(
+                  child: PopularProducts(
+                      products: unapproved,
+                      isDelete: true,
+                      func: (Product prod, int index) =>
+                          deleteProduct(prod, index)),
+                ),
+                Container(
+                    margin:
+                        const EdgeInsets.only(left: 20, top: 10, bottom: 10),
+                    alignment: Alignment.centerLeft,
+                    child: const Text(
+                      "Approved",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    )),
+                const SizedBox(
+                  height: 15,
+                ),
+                Expanded(
+                  child: PopularProducts(
+                    products: approved,
+                    isDelete: true,
+                    func: (Product prod, int index) =>
+                        deleteProduct(prod, index),
+                    isApproved: true,
+                  ),
+                ),
+              ],
+            ),
           );
   }
 }

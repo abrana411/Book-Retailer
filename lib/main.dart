@@ -1,9 +1,10 @@
+import './features/auth/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import './router.dart';
 import 'providers/user_provider.dart';
-import 'features/auth/screens/auth_screen.dart';
+// import 'features/auth/screens/auth_screen.dart';
 import 'constants/global_variables.dart';
 import 'features/admin/screens/admin_screen.dart';
 import 'common/widgets/bottom_nav_bar.dart';
@@ -71,8 +72,10 @@ class _MyAppState extends State<MyApp> {
           ? Provider.of<UserProvider>(context).user.type != 'user'
               ? const AdminScreen() //If the user type is not 'user' then it means it is the admin and we will display the admin screen then, else the actual home ie the bottom nav screen with home seleceted by default
               : const BottomNavBar()
-          : const AuthScreen(),
-      // home: const AdminScreen(),
+          // : const AuthScreen(),
+          // : const SignUpScreen()
+          : const LogInScreen(),
+      // home: const AccountScreen(),
     );
   }
 }

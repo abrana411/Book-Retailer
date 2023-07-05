@@ -9,6 +9,7 @@ import '../screens/products_screen.dart';
 import '../../../constants/global_variables.dart';
 
 class AdminScreen extends StatefulWidget {
+  static const routeName = "/admin_screen";
   const AdminScreen({super.key});
 
   @override

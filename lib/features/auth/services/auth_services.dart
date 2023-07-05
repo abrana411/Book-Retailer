@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:a_to_z_shop/features/admin/screens/admin_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
@@ -73,8 +74,14 @@ class AuthService {
               await prefs.setString(
                   "User_token", json.decode(response.body)['token']);
               if (context.mounted) {
-                Navigator.of(context).pushNamedAndRemoveUntil(
-                    BottomNavBar.routeName, (route) => false);
+                //Fixed bug of regustering:
+                if (json.decode(response.body)['type'] == 'user') {
+                  Navigator.of(context).pushNamedAndRemoveUntil(
+                      BottomNavBar.routeName, (route) => false);
+                } else {
+                  Navigator.of(context).pushNamedAndRemoveUntil(
+                      AdminScreen.routeName, (route) => false);
+                }
               }
             });
       }
@@ -114,8 +121,14 @@ class AuthService {
                   "User_token", json.decode(response.body)['token']);
               if (context.mounted) //for the warning have to do this
               {
-                Navigator.of(context).pushNamedAndRemoveUntil(
-                    BottomNavBar.routeName, (route) => false);
+                //Fixed bug of login:
+                if (json.decode(response.body)['type'] == 'user') {
+                  Navigator.of(context).pushNamedAndRemoveUntil(
+                      BottomNavBar.routeName, (route) => false);
+                } else {
+                  Navigator.of(context).pushNamedAndRemoveUntil(
+                      AdminScreen.routeName, (route) => false);
+                }
               }
             });
       }

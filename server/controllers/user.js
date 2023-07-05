@@ -12,25 +12,25 @@ const addProductToUserCart = async (req,res)=>{
     const product = await productModel.findById(id);
     let currUser = await userModel.findById(userId);
     
-    if(!product)
-    {
-      // let productInCart = false;
-      // for(let i=0;i<currUser.cart.length;i++)
-      // {
-      //     if(String(currUser.cart[i].product._id).equals(product._id)) 
-      //     {
-      //       productInCart = true;
-      //     }
-      // }
-      // if(productInCart)
-      // {
-      //   currUser.cart.splice(i,1);
-      // }
+    // if(!product)
+    // {
+    //   // let productInCart = false;
+    //   // for(let i=0;i<currUser.cart.length;i++)
+    //   // {
+    //   //     if(String(currUser.cart[i].product._id).equals(product._id)) 
+    //   //     {
+    //   //       productInCart = true;
+    //   //     }
+    //   // }
+    //   // if(productInCart)
+    //   // {
+    //   //   currUser.cart.splice(i,1);
+    //   // }
 
-      //BUG: (If someone deletes a product and this product remains in cart of some user (Then it will not get deleted from there))
+    //   //BUG: (If someone deletes a product and this product remains in cart of some user (Then it will not get deleted from there))
 
-      return res.json()
-    }
+    //   return res.json()
+    // }
     //check if the currUser has any item in cart or not:-
     if(currUser.cart.length == 0)
     {
@@ -189,6 +189,16 @@ const getListedProducts = async (req,res) => {
   }
 }
 
+const deleteProduct = async (req,res) => {
+  try {
+    const productId = req.params['id'];
+    await productModel.findByIdAndDelete(productId);
+    res.json({msg: 'Deleted Successfully'});
+  } catch (error) {
+    res.status(500).json({error: `An error has occured with message: ${error}`});
+  }
+}
+
 
 
 module.exports = {
@@ -197,5 +207,6 @@ module.exports = {
   addUserAddress,
   createOrder,
   getOrders,
+  deleteProduct,
   getListedProducts,
 };

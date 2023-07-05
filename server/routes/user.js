@@ -5,7 +5,8 @@ const {
     addUserAddress,
     createOrder,
     getOrders,
-    getListedProducts
+    getListedProducts,
+    deleteProduct,
 } = require('../controllers/user');
 
 const router = express.Router();
@@ -16,5 +17,6 @@ router.route('/add-address').post(addUserAddress)
 router.route('/placedOrder').post(createOrder);
 router.route('/getUserOrder').get(getOrders);
 router.route('/getListedProducts').get(getListedProducts);
+router.route('/:id').delete(deleteProduct);
 
 module.exports = router;
