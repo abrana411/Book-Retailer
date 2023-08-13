@@ -1,16 +1,32 @@
-# a_to_z_shop
+# Features:
+1) Google and Email & Password Authentication
+2) Persisting Auth State
+3) Searching Books
+4) Filtering Books (Based on Category)
+5) Books Details
+6) Adding book to cart
+7) Payment gateway using Razor Pay
+8) User profile having:
+   
+   i) Viewing My Orders
 
-A new Flutter project.
+   ii) Viewing and Adding Books to sell
 
-## Getting Started
+9) Placing Orders
+10) Order details and Status
+11) Admin Panel:
 
-This project is a starting point for a Flutter application.
+    i) Changing the status of placed orders
+    
+    ii) Approving books to be sold on application
 
-A few resources to get you started if this is your first Flutter project:
+    iii) Deleting books
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+    iv) Analytics (on Graph and Chart)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+# Some Screens:
+
+# Tech Used
+Server: Node.js, Express, Mongoose, MongoDB, Cloudinary
+
+Client: Flutter, Provider
